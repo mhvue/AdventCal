@@ -1,0 +1,75 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url("./images/background.jpg");
+    color: white;
+}
+
+th{
+    border: 1px solid white;
+    color: white;
+}
+td{
+    border: 1px solid white;
+    color: black;
+}
+
+.rowDays{
+    padding: 10px;
+    height: 100px;
+}
+
+img{
+    width: 400px;
+}
+
+table{
+    background-color: gray;
+}
+
+h2,h1,h6{
+    text-align: center;
+}
+
+.dinoFactHolder,h5{
+    color: black;
+}
+
+.linkText{
+    color: white;
+}
+
+footer{
+    padding: 20px;
+    background-color: gray;
+    text-align: center;
+}
+li{
+    list-style-position:inside;
+}
+
+table{
+    margin-top: 20px;
+}
+
+#contactMe{
+    background-color: black;
+    padding: 10px;
+}
+
+
+.clickMe{
+    background-color: goldenrod;
+}
+
+.clicked{
+    background-color: green;
+}
+
+@media screen and (max-width: 600px) {
+    h2{
+        text-align: left;
+    }
+}
