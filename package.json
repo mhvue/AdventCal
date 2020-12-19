@@ -1,0 +1,29 @@
+{
+  "name": "dinosaurAdventCal",
+  "version": "1.0.0",
+  "description": "dinosaur advent calendar v2 with a MySQL as the db and Sequelize as ORM",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhvue/dinosaurAdventCal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mhvue/dinosaurAdventCal/issues"
+  },
+  "homepage": "https://github.com/mhvue/dinosaurAdventCal#readme"
+}
