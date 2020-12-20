@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes){
             type: DataTypes.INTEGER
         },
         facts: {
-            text: DataTypes.STRING
+            type: DataTypes.STRING
         }
     });
 

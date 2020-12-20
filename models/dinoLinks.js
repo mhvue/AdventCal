@@ -4,10 +4,10 @@ module.exports = function(sequelize, DataTypes){
         id:{
             autoIncrement: true,
             primaryKey: true,
-            type: DataTypes.INTERGER
+            type: DataTypes.INTEGER
         },
         links: {
-            text: DataTypes.STRING
+            type: DataTypes.STRING
         }
     });
 
