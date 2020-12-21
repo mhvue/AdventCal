@@ -86,10 +86,15 @@ $("td").on("click",function(){
      //previous date
     //whatever is clicked on, have to check to see if less than current num
     else if(parseInt(getNum) < parseInt(getD)){
+        const prevDay = parseInt(getNum);
         $(".msgModal").modal();
         $("#"+getID).addClass("clicked")
         $(".modal-title").html("Fact For the Day for " + selectDate)
-        $(".dinoFactHolder").html(dinosaurFacts[getNum-1]);
+
+        $.get("/api/dinosaurFact/"+ prevDay, function(data){
+            $(".dinoFactHolder").html(data.facts)
+         });
+        
     }
 
     //for areas with no dates/num on it  
