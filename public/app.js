@@ -44,18 +44,6 @@ for(let i = -1; i <= 33; i++){
 
 }
 
-//trying to get the green background to persist
-// const numbers =[];
-// const compareDays = moment().format("MM/D/YYYY") > moment().subtract(30,"days").format("MM/D/YYYY")
-// for(let j = 0; j < numbers.length; j++){
-//     numbers[i]
-//     if(compareDays == true){
-//         $("#td"+numbers[i]).addClass("clicked")
-//     }
-    
-// }
-
-// console.log(numbers)
 
 //highlight today's date
 function getToday(){
@@ -79,6 +67,7 @@ $("td").on("click",function(){
     const getID= $(this).attr("id")
  
 
+    //GET request  HERE
     //check if what is clicked matched today's date
     //current date 
     if(selectDate == currentDate.format("MM/D/YYYY")){
@@ -86,7 +75,13 @@ $("td").on("click",function(){
         $("#"+getID).removeClass("clickMe").addClass("clicked")
         //show match getNum to match index-1
         $(".modal-title").html("Fact For the Day for " + selectDate)
-        $(".dinoFactHolder").html(dinosaurFacts[getNum-1])
+        console.log(getD)
+
+        $.get("api/dinosaurFact/"+ parseInt(getD), function(data){
+            console.log(data.dayNum)
+           // $(".dinoFactHolder").html(data)
+        });
+    
     }
      //previous date
     //whatever is clicked on, have to check to see if less than current num
