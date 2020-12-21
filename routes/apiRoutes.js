@@ -7,10 +7,12 @@ const sequelize = require("sequelize");
 module.exports = function(app){
     //get one at time per day click
     app.get("/api/dinosaurFact/:id", function(req,res){
-        const dayNum = req.params.id;
-        console.log(dayNum)
-        console.log("here")
+        const dayNum = parseInt(req.params.id);
+       // console.log(dayNum)
         //find by pk as pk will rep the day number
-        // db.findByPk(dayNum)
-    })
+        db.dinoFacts.findByPk(dayNum).then(function(fact){
+            console.log(fact)
+            res.json(fact);
+        });
+    });
 }

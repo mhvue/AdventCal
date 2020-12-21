@@ -77,9 +77,9 @@ $("td").on("click",function(){
         $(".modal-title").html("Fact For the Day for " + selectDate)
         console.log(getD)
 
-        $.get("api/dinosaurFact/"+ parseInt(getD), function(data){
-            console.log(data.dayNum)
-           // $(".dinoFactHolder").html(data)
+        $.get("/api/dinosaurFact/"+ parseInt(getD), function(data){
+           // console.log(data.facts)
+           $(".dinoFactHolder").html(data.facts)
         });
     
     }
