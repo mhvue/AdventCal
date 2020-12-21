@@ -16,7 +16,9 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 //routes here
-  
+//api route here
+//html here
+require("./routes/htmlRoutes")(app); 
 
 var syncOptions = { force: false };
 

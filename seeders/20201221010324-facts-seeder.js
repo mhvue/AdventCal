@@ -3,7 +3,7 @@
 module.exports = {
   //up is to put them into out db
   up: (queryInterface, Sequelize) => {
-    //we are going to inset a lot of data to our db(so name of db, not table)
+    //we are going to inset a lot of data to our db in the that table
       return queryInterface.bulkInsert('dinoFacts', [{
         facts: "Dinosaurs ruled the Earth for over 160 million years <br> Watch to learn more!",
         createdAt: new Date(),
