@@ -69,7 +69,7 @@ function getToday(){
 getToday();
 
 
-//Display Facts
+//Display Facts 12/20/20: Right now, not working b/c I have not adjusted js due to incoporating db with the facts now
 $("td").on("click",function(){
     //$this is grabbing the id per day 
     const selectDate = $(this).attr("data-date");
