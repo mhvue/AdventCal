@@ -1,3 +1,19 @@
+const imgs = {
+    dino1: "<img src='./images/triceratops.jpg'>",
+    dino2: "<img src='./images/Hesperonychus.jpg'>",
+    dino3: "<img src='./images/Allosaurus.jpg'>",
+    dino4: "<img src='./images/Brachiosaurus.jpg'>",
+    dino5: "<img src='./images/skeleton-ceratosaurus.jpg'>",
+    dino6: "<img src='./images/skeleton-triceratops.jpg'>",
+    dino7: "<img src='./images/fossils-heterodontosaurus.jpg'>",
+    dino8: "<img src='./images/Heterodontosaurus.jpg'>",
+    dino9: "<img src='./images/Stego.jpg'>",
+    dino10: "<img src='./images/Saltopus.jpg'>",
+    dino11: "<img src='./images/Dreadnoughtus.jpg'>",
+    dino12: "<img src='./images/Sauropods.jpg'>",
+    dino13:"<img src='./images/dinosaur-footprints.jpg'>",
+}
+
 const date = new Date();
 //get year
 const year = date.getFullYear();
