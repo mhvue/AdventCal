@@ -11,8 +11,14 @@ module.exports = function(app){
        // console.log(dayNum)
         //find by pk as pk will rep the day number
         db.dinoFacts.findByPk(dayNum).then(function(fact){
-            console.log(fact)
             res.json(fact);
         });
+
+        //testing out below
+        // db.dinoFacts.findByPk(dayNum,{
+        //     include:[db.dinoLinks]
+        // }).then(function(fact){
+        //     res.json(fact);
+        // });
     });
 }

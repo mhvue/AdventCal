@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes){
+module.exports = (sequelize, DataTypes)=> {
     const DinoFacts = sequelize.define("dinoFacts",{
         id:{
             autoIncrement:true,
@@ -7,8 +7,17 @@ module.exports = function(sequelize, DataTypes){
         },
         facts: {
             type: DataTypes.STRING
+        },
+        dinoLinkId: {
+            //fk in dinoLinks
+            type: DataTypes.INTEGER,
+            allowNull: true
         }
     });
+
+    DinoFacts.associate = models =>{
+        DinoFacts.belongsTo(models.dinoLinks)
+    }
 
     return DinoFacts;
 }

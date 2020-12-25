@@ -95,6 +95,7 @@ $("td").on("click",function(){
 
         $.get("/api/dinosaurFact/"+ parseInt(getD), function(data){
            // console.log(data.facts)
+           
            $(".dinoFactHolder").html(data.facts)
         });
     
