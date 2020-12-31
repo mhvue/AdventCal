@@ -111,10 +111,18 @@ $("td").on("click",function(){
         $.get("/api/dinosaurFact/"+ prevDay, function(data){
             console.log(data,  data.dinoLink.links)
             const infoFact = data.facts;
-            const infoLink = data.dinoLink.links
+            const infoId = data.dinoLinkId;
+            console.log(infoId)
+            const infoLink = data.dinoLink.links;
 
-            $(".dinoFactHolder").html(infoFact + " "+ 
+            if(infoLink === null){
+                $(".dinoFactHolder").html(infoFact)
+            }
+            else{
+                $(".dinoFactHolder").html(infoFact + " "+ 
                 "<a href=" + infoLink + " target='_blank'>Click Here</a>")
+            }
+          
          });
         
     }

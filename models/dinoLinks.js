@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes)=>{
             autoIncrement: true,
             primaryKey: true,
             type: DataTypes.INTEGER,
+            allowNull: true
         },
         links: {
             type: DataTypes.STRING,

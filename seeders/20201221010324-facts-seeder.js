@@ -6,7 +6,7 @@ module.exports = {
     //we are going to inset a lot of data to our db in the that table
       return queryInterface.bulkInsert('dinoFacts', [{
         facts: "Dinosaurs ruled the Earth for over 160 million years <br> Watch to learn more!",
-       // dinoLinkId: 5,
+      //  dinoLinkId: 5,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -17,13 +17,13 @@ module.exports = {
         updatedAt: new Date()
       },{
         facts: "Birds' ancestors are dinosaurs. Back then, some dinosuars have feathers",
-       // dinoLinkId: null,
+      //  dinoLinkId: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         facts: "The name dinosaur means 'frighteningly big lizard",
-      //  dinoLinkId: null,
+       // dinoLinkId: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -35,7 +35,7 @@ module.exports = {
       },
       {
         facts: "Dreadnoughtus was the largest dinosaur.",
-      //  dinoLinkId: null,
+       // dinoLinkId: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },{
@@ -45,13 +45,13 @@ module.exports = {
         updatedAt: new Date()
       },{
         facts: "Triceratops had nose horns they used for defence.",
-       // dinoLinkId: null,
+      //  dinoLinkId: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         facts: "T. Rex had quite a large brain for a dinosaur.",
-        //dinoLinkId: null,
+       // dinoLinkId: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -93,49 +93,49 @@ module.exports = {
       },
       {
         facts: "Allosaurus existed before T.Rex. It's also very big dinosaurs that many other dinosaurs were scared of. No dinsoaurs hunted it...it's like a cousin to the T.Rex",
-       // dinoLinkId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        facts: "Brachiosaurus name means 'arm-reptiles. Stay tune for tomorrow to learn more about these guys!",
-        //dinoLinkId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        facts: "Let's learn more about the Brachiosaurus! (click to yesterday's date for the picture)",
-       // dinoLinkId: 6,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        facts: "Bone of a Ceratosaurus. Most of the time, they ate fish and crocodiles. Makes sense as they were good swimmers!",
       //  dinoLinkId: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        facts: "Bone of a Triceratops. They have a total of 985 bones!",
+        facts: "Brachiosaurus name means 'arm-reptiles. Stay tune for tomorrow to learn more about these guys!",
        // dinoLinkId: null,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        facts: "Let's learn more about the Brachiosaurus! (click to yesterday's date for the picture)",
+      //  dinoLinkId: 6,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        facts: "Bone of a Ceratosaurus. Most of the time, they ate fish and crocodiles. Makes sense as they were good swimmers!",
+       // dinoLinkId: null,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        facts: "Bone of a Triceratops. They have a total of 985 bones!",
+      //  dinoLinkId: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         facts: "Joke: What did the dinosaur say when the volacano exploded?..... Answer: Have a Lava-ly day!",
-        //dinoLinkId: null,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        facts: "This is a Heterodontonsaurus. The name means different tooth lizard.",
        // dinoLinkId: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
+        facts: "This is a Heterodontonsaurus. The name means different tooth lizard.",
+      // dinoLinkId: null,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
         facts: "Fossils are remains of ancient animals. It helps us learn about them. Let's play a fossil game!",
-        //dinoLinkId: 2,
+       // dinoLinkId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -147,37 +147,37 @@ module.exports = {
       },
       {
         facts: "Mery Christmas!!<br> Did dinosaurs live in the cold too? yes! there are some bones found in the Arctic.",
-       // dinoLinkId: 8,
+      //  dinoLinkId: 8,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         facts: "The smallest dinosuar is Lesothosaurus, which is the size of big chickens. -https://www.scholastic.com/teachers/articles/teaching-content/dinosaurs-smallest-largest/",
-       // dinoLinkId: null,
+      //  dinoLinkId: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         facts: "Guess how tall T. Rex was? <br> He was 12 feet tall. -https://www.scholastic.com/teachers/articles/teaching-content/dinosaurs-smallest-largest/",
-       // dinoLinkId: null,
+        //dinoLinkId: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         facts: "Did dinosaur lay eggs?Yes they did! Dinosaurs lay about 3-5 eggs. Sometime more.",
-        //dinoLinkId: null,
+       // dinoLinkId: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         facts: "The Stegosaurus had a brain the size of a walnut and is considered a dumb dinosaur.",
-        //dinoLinkId: null,
+       // dinoLinkId: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         facts: "The oldest dinosaur is Saltopus. It lived for 245 million years ago.",
-        //dinoLinkId: null,
+       // dinoLinkId: null,
         createdAt: new Date(),
         updatedAt: new Date()
       }
