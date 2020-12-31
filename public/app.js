@@ -109,7 +109,12 @@ $("td").on("click",function(){
         $(".modal-title").html("Fact For the Day for " + selectDate)
 
         $.get("/api/dinosaurFact/"+ prevDay, function(data){
-            $(".dinoFactHolder").html(data.facts)
+            console.log(data,  data.dinoLink.links)
+            const infoFact = data.facts;
+            const infoLink = data.dinoLink.links
+
+            $(".dinoFactHolder").html(infoFact + " "+ 
+                "<a href=" + infoLink + " target='_blank'>Click Here</a>")
          });
         
     }
