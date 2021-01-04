@@ -22,7 +22,8 @@ let getDays = "";
 let tdData= "";
 
 //CALENDAR
-//displaying month and year 
+//displaying month and year(manually done by me to display Dec. 2020 dates)
+//as of Jan. 3, 2021, I want use Moment to show dates correctly per year 
 $("h2").html("December " + year) 
 //generating dates
 for(let i = -1; i <= 33; i++){
@@ -60,85 +61,84 @@ for(let i = -1; i <= 33; i++){
 
 }
 
-
 //highlight today's date
-function getToday(){
-    const getToday = moment().format("MM/D/YYYY");
-    if(getToday == $("#td"+moment().format("D")).attr("data-date")){
-        $("#td"+moment().format("D")).addClass("clickMe")
-    }
+// function getToday(){
+//     const getToday = moment().format("MM/D/YYYY");
+//     if(getToday == $("#td"+moment().format("D")).attr("data-date")){
+//         $("#td"+moment().format("D")).addClass("clickMe")
+//     }
     
 
-}
-getToday();
+// }
+// getToday();
 
-
-//Display Facts 12/20/20: Right now, not working b/c I have not adjusted js due to incoporating db with the facts now
+//display facts 
+//as of 1/3/2021 this is NOT working b/c we are not no longer Dec. 2020
 $("td").on("click",function(){
     //$this is grabbing the id per day 
     const selectDate = $(this).attr("data-date");
     const getNum= $(this).html();
     const currentDate = moment();
     const getD = currentDate.format("D");
-    const getID= $(this).attr("id")
- 
+    console.log(getD)
+    const getID= $(this).attr("id");
+    console.log(getID)
+    
 
-    //GET request  HERE
+    //as of 1/3/21: below will not work as it is for Dec. 2020 
     //check if what is clicked matched today's date
     //current date 
-    if(selectDate == currentDate.format("MM/D/YYYY")){
-        $(".msgModal").modal();
-        $("#"+getID).removeClass("clickMe").addClass("clicked")
-        //show match getNum to match index-1
-        $(".modal-title").html("Fact For the Day for " + selectDate)
-        console.log(getD)
+    // if(selectDate == currentDate.format("MM/D/YYYY")){
+    //     $(".msgModal").modal();
+    //     $("#"+getID).removeClass("clickMe").addClass("clicked")
+    //     //show match getNum to match index-1
+    //     $(".modal-title").html("Fact For the Day for " + selectDate)
+    //     console.log(getD)
 
-        $.get("/api/dinosaurFact/"+ parseInt(getD), function(data){
-           // console.log(data.facts)
+    //     $.get("/api/dinosaurFact/"+ parseInt(getD), function(data){
+    //        // console.log(data.facts)
            
-           $(".dinoFactHolder").html(data.facts)
-        });
+    //        $(".dinoFactHolder").html(data.facts)
+    //     });
     
-    }
-     //previous date
-    //whatever is clicked on, have to check to see if less than current num
-    else if(parseInt(getNum) < parseInt(getD)){
-        const prevDay = parseInt(getNum);
-        $(".msgModal").modal();
-        $("#"+getID).addClass("clicked")
-        $(".modal-title").html("Fact For the Day for " + selectDate)
+    // }
+    //  //previous date
+    // //whatever is clicked on, have to check to see if less than current num
+    // else if(parseInt(getNum) < parseInt(getD)){
+    //     const prevDay = parseInt(getNum);
+    //     $(".msgModal").modal();
+    //     $("#"+getID).addClass("clicked")
+    //     $(".modal-title").html("Fact For the Day for " + selectDate)
 
-        $.get("/api/dinosaurFact/"+ prevDay, function(data){
-            console.log(data,  data.dinoLink.links)
-            const infoFact = data.facts;
-            const infoId = data.dinoLinkId;
-            console.log(infoId)
-            const infoLink = data.dinoLink.links;
+    //     $.get("/api/dinosaurFact/"+ prevDay, function(data){
+    //         console.log(data,  data.dinoLink.links)
+    //         const infoFact = data.facts;
+    //         const infoLink = data.dinoLink.links;
 
-            if(infoLink === null){
-                $(".dinoFactHolder").html(infoFact)
-            }
-            else{
-                $(".dinoFactHolder").html(infoFact + " "+ 
-                "<a href=" + infoLink + " target='_blank'>Click Here</a>")
-            }
+    //         if(infoLink === null){
+    //             $(".dinoFactHolder").html(infoFact)
+    //         }
+    //         else{
+    //             $(".dinoFactHolder").html(infoFact + " "+ 
+    //             "<a href=" + infoLink + " target='_blank'>Click Here</a>")
+    //         }
           
-         });
+    //      });
         
-    }
+    // }
 
     //for areas with no dates/num on it  
-    else if(getNum == ""){
-        $(".msgModal").modal();
-        $(".dinoFactHolder").html("No date here");
-        $(".modal-title").html("")
+    // else if(getNum == ""){
+    //     $(".msgModal").modal();
+    //     $(".dinoFactHolder").html("No date here");
+    //     $(".modal-title").html("")
 
-    }
-    //future dates = cannot show 
-    else{
-        $(".msgModal").modal();
-        $(".modal-title").html("")
-        $(".dinoFactHolder").html("Not time to see this fact yet");
-    }
+    // }
+    // //future dates = cannot show 
+    // else{
+    //     $(".msgModal").modal();
+    //     $(".modal-title").html("")
+    //     $(".dinoFactHolder").html("Not time to see this fact yet");
+    // }
 
 });
