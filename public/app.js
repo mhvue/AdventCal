@@ -18,51 +18,46 @@ const imgs = {
 const date = new Date();
 //get the year
 const year = date.getFullYear();
-let getDays = "";
-let tdData= "";
-
-//CALENDAR
-//displaying month and year(manually done by me to display Dec. 2020 dates)
-//as of Jan. 3, 2021, I want use Moment to show dates correctly per year 
-$("h2").html("December " + year) 
-
 let count = 34 //number of days passed since Dec. 2020 as of 1/4/21
 
 if(moment()){
-    count++ //tryng to reassign as it becmoes the next days, so we can track how many days since 12/1/20
+    count++ //goes up as we can track how many days since 12/1/20
     console.log(moment().subtract(count, "days").format("MM/DD/YYYY"))
 }
 const countMath = 365-count;
-const counter = $("#count").html("<p>Days til Dec: " + countMath + "</p>");
 console.log(365-count)//days until dec. 2021
 
-//generate dates 
-for(let i = -2; i <= 33; i++){
-    getDays = i;
-    tdData = $("<td>").html(getDays).attr("data-date",`12/${i}/${year}`).attr("id","td"+i)
+//CALENDAR
+$("h2").html("December " + year);
+$("#count").html("<p>Days til Dec: " + countMath + "</p>");
 
-    //1st week
+//generate dates 
+for(let i = -2; i <= 32; i++){
+    let getDays = i;
+    let tdData = $("<td>").html(getDays).attr("data-date",`12/${i}/${year}`).attr("id",i) //updated this to i instead of td+i as the id for testing purposes 
+
+    // //1st week
     if(i == -2|| i == -1 || i == 0){
      $("#numberDays").append("<td>"+ "" + "</td>");
     }
     else if(i >=1 && i <= 4){
      $("#numberDays").append(tdData);
     }
-    //2nd week
+    // //2nd week
     else if(i >= 5 && i <= 11){
      $("#numberDays2").append(tdData);
     }
-    //3rd week
+    // //3rd week
     else if(i >= 12 && i <= 18){
      $("#numberDays3").append(tdData);
     }
-    //4th week
+    // //4th week
     else if(i >= 19 && i <= 25){
      $("#numberDays4").append(tdData);
      }
-     //5th week
+    //  //5th week
     else{
-         if(i > 31 && i <= 33){
+         if(i >= 32 && i == 32){
             $("#numberDays5").append("<td>"+ "" + "</td>");
          }
          else{
@@ -90,10 +85,24 @@ $("td").on("click",function(){
     const selectDate = $(this).attr("data-date");
     const getNum= $(this).html();
     const currentDate = moment();
-    const getD = currentDate.format("D");
-    console.log(getD)
+    //commented out below as are not getting the current day anymore to show the specific fact for testing purposes 
+    // const getD = currentDate.format("D"); //get the current no. day 
+    // console.log(getD)
     const getID= $(this).attr("id");
     console.log(getID)
+    
+   //I'm not passing getID ara parameter to below b/c I want to show each fact per td click for testing purposes 
+   if(getID){
+        $.get("/api/dinosaurFact/"+ parseInt(getID), function(data){
+            // console.log(data.facts)
+            $(".msgModal").modal();
+            $(".dinoFactHolder").html(data.facts)
+        });
+   }
+   else{
+        $(".msgModal").modal();
+        $(".dinoFactHolder").html("nothing here")
+   }
     
 
     //as of 1/3/21: below will not work as it is for Dec. 2020 
@@ -151,5 +160,5 @@ $("td").on("click",function(){
     //     $(".modal-title").html("")
     //     $(".dinoFactHolder").html("Not time to see this fact yet");
     // }
-
+ 
 });
