@@ -16,12 +16,20 @@ module.exports = (sequelize, DataTypes)=> {
             type: DataTypes.INTEGER,
             allowNull: true
         },
+        imagesId:{
+            type: DataTypes.STRING,
+            allowNull: true,
+        }
         //incoporate pk as as the fk for images here 
     });
 
     DinoFacts.associate = models =>{
         DinoFacts.belongsTo(models.dinoLinks)
     }
+
+    // DinoFacts.associate = models => {
+    //     DinoFacts.belongsToMany()
+    // }
 
     return DinoFacts;
 }

@@ -6,14 +6,14 @@ module.exports = (sequelize, DataTypes) =>{
             type: DataTypes.INTEGER
         },
         images: {
-            type: DataTypes.BLOB
+            type: DataTypes.STRING
         }
     });
 
     //associate to dinoFacts  here
-    //ImagesDB.associate = models => {
-        //ImagesDB.hasMany(models.dinoFacts)
-    //}
+    ImagesDB.associate = models => {
+        ImagesDB.hasMany(models.dinoFacts)
+    }
 
     return ImagesDB;
 }
