@@ -10,10 +10,11 @@ module.exports = (sequelize, DataTypes) =>{
         }
     });
 
-    //associate to dinoFacts  here
+    //associate to dinoLinks here
     ImagesDB.associate = models => {
-        ImagesDB.hasMany(models.dinoFacts)
+        ImagesDB.hasOne(models.dinoFacts)
     }
+
 
     return ImagesDB;
 }

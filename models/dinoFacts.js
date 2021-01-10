@@ -15,21 +15,17 @@ module.exports = (sequelize, DataTypes)=> {
             //fk in dinoLinks
             type: DataTypes.INTEGER,
             allowNull: true
-        },
-        imagesId:{
-            type: DataTypes.STRING,
-            allowNull: true,
         }
         //incoporate pk as as the fk for images here 
     });
 
+    //associations 
     DinoFacts.associate = models =>{
         DinoFacts.belongsTo(models.dinoLinks)
     }
-
-    // DinoFacts.associate = models => {
-    //     DinoFacts.belongsToMany()
-    // }
+    DinoFacts.associate = models => {
+        DinoFacts.belongsTo(models.images)
+    }
 
     return DinoFacts;
 }
