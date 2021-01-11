@@ -15,8 +15,9 @@ module.exports = (sequelize, DataTypes)=>{
         }
     });
 
+    //associations to facts model
     LinksDB.associate = models =>{
-        LinksDB.hasMany(models.facts)
+        LinksDB.hasOne(models.facts)
     }
 
     return LinksDB;

@@ -10,19 +10,14 @@ module.exports = (sequelize, DataTypes)=> {
         },
         factsInfo: {
             type: DataTypes.STRING
-        },
-        // linkId: {
-        //     //fk in Links
-        //     type: DataTypes.INTEGER,
-        //     allowNull: true
-        // }
-        //incoporate pk as as the fk for images here 
+        }
     });
 
-    //associations 
+    //associations to links model
     FactsDB.associate = models =>{
         FactsDB.belongsTo(models.links)
     }
+    //associations to image model
     FactsDB.associate = models => {
         FactsDB.belongsTo(models.images)
     }

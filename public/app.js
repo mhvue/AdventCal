@@ -1,35 +1,22 @@
-const imgs = {
-    dino1: "<img src='./images/triceratops.jpg'>",
-    dino2: "<img src='./images/Hesperonychus.jpg'>",
-    dino3: "<img src='./images/Allosaurus.jpg'>",
-    dino4: "<img src='./images/Brachiosaurus.jpg'>",
-    dino5: "<img src='./images/skeleton-ceratosaurus.jpg'>",
-    dino6: "<img src='./images/skeleton-triceratops.jpg'>",
-    dino7: "<img src='./images/fossils-heterodontosaurus.jpg'>",
-    dino8: "<img src='./images/Heterodontosaurus.jpg'>",
-    dino9: "<img src='./images/Stego.jpg'>",
-    dino10: "<img src='./images/Saltopus.jpg'>",
-    dino11: "<img src='./images/Dreadnoughtus.jpg'>",
-    dino12: "<img src='./images/Sauropods.jpg'>",
-    dino13:"<img src='./images/dinosaur-footprints.jpg'>",
-}
-
 //get the date 
 const date = new Date();
 //get the year
 const year = date.getFullYear();
-let count = 34 //number of days passed since Dec. 2020 as of 1/4/21
 
-if(moment()){
-    count++ //goes up as we can track how many days since 12/1/20
-    console.log(moment().subtract(count, "days").format("MM/DD/YYYY"))
-}
-const countMath = 365-count;
-console.log(365-count)//days until dec. 2021
+//below not working
+// let count = 34; //number of days passed since Dec. 2020 as of 1/4/21
+
+// if(moment()){
+//     count = count++ //goes up as we can track how many days since 12/1/20
+//     console.log(moment().subtract(count, "days").format("MM/DD/YYYY"))
+//     console.log(count)
+// }
+// const countMath = 365-count;
+// console.log(365-count)//days until dec. 2021
 
 //CALENDAR
 $("h2").html("December " + year);
-$("#count").html("<p>Days til Dec: " + countMath + "</p>");
+// $("#count").html("<p>Days til Dec: " + countMath + "</p>");
 
 //generate dates 
 for(let i = -2; i <= 32; i++){
