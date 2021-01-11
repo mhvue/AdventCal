@@ -5,14 +5,14 @@ module.exports = (sequelize, DataTypes) =>{
             primaryKey: true,
             type: DataTypes.INTEGER
         },
-        images: {
+        imagesInfo: {
             type: DataTypes.STRING
         }
     });
 
     //associate to dinoLinks here
     ImagesDB.associate = models => {
-        ImagesDB.hasOne(models.dinoFacts)
+        ImagesDB.hasOne(models.facts)
     }
 
 

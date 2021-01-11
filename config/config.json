@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "124Cloud",
-    "database": "dinosaurCalendar",
+    "database": "adventCalendar",
     "host": "localhost",
     "port": 3307,
     "dialect": "mysql",
@@ -11,7 +11,7 @@
   "test": {
     "username": "root",
     "password": "124Cloud",
-    "database": "dinosaurCalendar",
+    "database": "adventCalendar",
     "host": "localhost",
     "dialect": "mysql",
     "operatorsAliases": 0
@@ -19,7 +19,7 @@
   "production": {
     "username": "root",
     "password": "124Cloud",
-    "database": "dinosaurCalendar",
+    "database": "adventCalendar",
     "host": "localhost",
     "dialect": "mysql",
     "operatorsAliases": 0

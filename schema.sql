@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS dinosaurCalendar;
+DROP DATABASE IF EXISTS adventCalendar;
 
-CREATE DATABASE dinosaurCalendar;
+CREATE DATABASE adventCalendar;
