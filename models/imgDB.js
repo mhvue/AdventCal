@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) =>{
 
     //associate to facts model 
     ImagesDB.associate = models => {
-        ImagesDB.hasOne(models.facts)
+        ImagesDB.hasOne(models.facts,{foreignKey: "imageId"})
     }
 
 

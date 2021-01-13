@@ -1,4 +1,4 @@
-//going to contain my GET for dinosaur facts
+//going to contain my GET for facts
 // require my db 
 const db = require("../models");
 //require sequelize here 
@@ -6,20 +6,23 @@ const sequelize = require("sequelize");
 
 module.exports = function(app){
     //get one at time per day click
-    app.get("/api/dinosaurFact/:id", function(req,res){
+    app.get("/api/fact/:id", function(req,res){
         const dayNum = parseInt(req.params.id);
        // console.log(dayNum)
         //find by pk as pk will rep the day number
-        // db.dinoFacts.findByPk(dayNum).then(function(fact){
+        // db.facts.findByPk(dayNum).then(function(fact){
+        //     console.log(fact)
         //     res.json(fact);
         // });
 
         //testing out below
-        db.dinoFacts.findByPk(dayNum,{
-            include:[db.dinoLinks]
+        db.facts.findByPk(dayNum,{
+            include:[db.links]
         }).then(function(fact){
             console.log(fact)
             res.json(fact);
+        }).catch(function(error){
+            console.log(error)
         });
     });
 }

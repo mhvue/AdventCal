@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes)=>{
 
     //associations to facts model
     LinksDB.associate = models =>{
-        LinksDB.hasOne(models.facts)
+        LinksDB.hasOne(models.facts,{foreignKey: "linkId"})
     }
 
     return LinksDB;
