@@ -1,4 +1,3 @@
-//as of 1/3/2021: want to change this it is a template for facts table 
 
 module.exports = (sequelize, DataTypes)=> {
     const FactsDB = sequelize.define("facts",{
@@ -13,7 +12,7 @@ module.exports = (sequelize, DataTypes)=> {
         }
     });
 
-    //associations to links model
+    //associations to links and images model
     FactsDB.associate = models =>{
         FactsDB.belongsTo(models.links)
     
