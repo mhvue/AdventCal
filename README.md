@@ -10,3 +10,4 @@ Template for those who want to e-advent calender for Dec. 2021. The one I made i
 
 ## TO DO:
 * I want to add an option to Like a fact.
+* more styling 

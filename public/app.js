@@ -3,16 +3,6 @@ const date = new Date();
 //get the year
 const year = date.getFullYear();
 
-//below not working
-// let count = 34; //number of days passed since Dec. 2020 as of 1/4/21
-
-// if(moment()){
-//     count = count++ //goes up as we can track how many days since 12/1/20
-//     console.log(moment().subtract(count, "days").format("MM/DD/YYYY"))
-//     console.log(count)
-// }
-// const countMath = 365-count;
-// console.log(365-count)//days until dec. 2021
 
 //CALENDAR
 $("h2").html("December " + year);
@@ -23,26 +13,26 @@ for(let i = -2; i <= 32; i++){
     let getDays = i;
     let tdData = $("<td>").html(getDays).attr("data-date",`12/${i}/${year}`).attr("id",i) //updated this to i instead of td+i as the id for testing purposes 
 
-    // //1st week
+     //1st week
     if(i == -2|| i == -1 || i == 0){
      $("#numberDays").append("<td>"+ "" + "</td>");
     }
     else if(i >=1 && i <= 4){
      $("#numberDays").append(tdData);
     }
-    // //2nd week
+     //2nd week
     else if(i >= 5 && i <= 11){
      $("#numberDays2").append(tdData);
     }
-    // //3rd week
+     //3rd week
     else if(i >= 12 && i <= 18){
      $("#numberDays3").append(tdData);
     }
-    // //4th week
+     //4th week
     else if(i >= 19 && i <= 25){
      $("#numberDays4").append(tdData);
      }
-    //  //5th week
+      //5th week
     else{
          if(i >= 32 && i == 32){
             $("#numberDays5").append("<td>"+ "" + "</td>");
@@ -54,7 +44,7 @@ for(let i = -2; i <= 32; i++){
 
 }
 
-//highlight today's date
+//highlight today's date..this is only for when it is December. *Comment out then.
 // function getToday(){
 //     const getToday = moment().format("MM/D/YYYY");
 //     if(getToday == $("#td"+moment().format("D")).attr("data-date")){
@@ -65,20 +55,20 @@ for(let i = -2; i <= 32; i++){
 // }
 // getToday();
 
-//display facts 
-//as of 1/3/2021 this is NOT working b/c we are not no longer Dec. 2020
+//display facts for any day that is clicked on 
 $("td").on("click",function(){
     //$this is grabbing the id per day 
-    const selectDate = $(this).attr("data-date");
-    const getNum= $(this).html();
-    const currentDate = moment();
+//these below are only for when it is December 
+//     const selectDate = $(this).attr("data-date");
+//     const getNum= $(this).html();
+//     const currentDate = moment();
+
     //commented out below as are not getting the current day anymore to show the specific fact for testing purposes 
     // const getD = currentDate.format("D"); //get the current no. day 
     // console.log(getD)
     const getID= $(this).attr("id");
     console.log(getID)
     
-   //I'm not passing getID ara parameter to below b/c I want to show each fact per td click for testing purposes 
    if(getID){
         $.get("/api/fact/"+ parseInt(getID), function(data){
              
@@ -109,7 +99,7 @@ $("td").on("click",function(){
    }
     
 
-    //as of 1/3/21: below will not work as it is for Dec. 2020 
+    //as of 1/3/21: below will not work as it is for Dec. 2020. NEED TO UPDATE WITH NEW CODE WITH DB
     //check if what is clicked matched today's date
     //current date 
     // if(selectDate == currentDate.format("MM/D/YYYY")){
