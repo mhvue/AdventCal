@@ -81,9 +81,16 @@ $("td").on("click",function(){
    //I'm not passing getID ara parameter to below b/c I want to show each fact per td click for testing purposes 
    if(getID){
         $.get("/api/fact/"+ parseInt(getID), function(data){
-             console.log(data.factsInfo)
+             console.log(data)
+             const information = data.factsInfo;
+             const dinoImg = data.image.imagesInfo;
+             const dinoLink = data.link.linksInof;
+
+          //for null values of links or images 
+          
             $(".msgModal").modal();
-            $(".dinoFactHolder").html(data.factsInfo)
+            $(".dinoFactHolder").html(data.factsInfo, 
+               "<img src='"+ data.images.imagesInfo +"'",)
         });
    }
    else{

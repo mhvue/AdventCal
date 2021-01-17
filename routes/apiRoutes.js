@@ -17,7 +17,10 @@ module.exports = function(app){
 
         //testing out below
         db.facts.findByPk(dayNum,{
-            include:[db.links]
+            include:[
+                {model: db.links},
+                {model: db.images}
+                ]
         }).then(function(fact){
             console.log(fact)
             res.json(fact);

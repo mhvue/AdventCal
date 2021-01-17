@@ -16,9 +16,7 @@ module.exports = (sequelize, DataTypes)=> {
     //associations to links model
     FactsDB.associate = models =>{
         FactsDB.belongsTo(models.links)
-    }
-    //associations to image model
-    FactsDB.associate = models => {
+    
         FactsDB.belongsTo(models.images)
     }
 
