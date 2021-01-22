@@ -98,7 +98,7 @@ $("td").on("click",function(){
         $(".dinoFactHolder").html("nothing here")
    }
     
-
+ 
     //as of 1/3/21: below will not work as it is for Dec. 2020. NEED TO UPDATE WITH NEW CODE WITH DB
     //check if what is clicked matched today's date
     //current date 
@@ -155,4 +155,25 @@ $("td").on("click",function(){
     //     $(".dinoFactHolder").html("Not time to see this fact yet");
     // }
  
+});
+
+
+//Like Button 
+//when click Like, it gets posted to dinofact db. 
+//then we can do get to show all like facts 
+
+$(".btn-primary").addClass("noLikes").on("click",function(){
+
+     //toggle btwn Liked and added to Likes plus the ability to unlike and an option to add to Likes
+    if($(this).hasClass("noLikes")){
+     //change text to capture the Liked clicked, update attr to liked
+     $(".btn-primary").removeClass("noLikes").addClass("likedInfo").text("Added to your likes!");
+    }
+    else{
+    // UNlike by clicking it again
+     $(this).removeClass("likedInfo").addClass("noLikes").text("Like this");
+    }
+
+     
+
 });

@@ -68,10 +68,6 @@ table{
     background-color: green;
 }
 
-a{
-    color: black;
-}
-
 @media screen and (max-width: 600px) {
     h2{
         text-align: left;
