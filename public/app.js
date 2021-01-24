@@ -168,12 +168,13 @@ $(".btn-primary").addClass("noLikes").on("click",function(){
     if($(this).hasClass("noLikes")){
      //change text to capture the Liked clicked, update attr to liked
      $(".btn-primary").removeClass("noLikes").addClass("likedInfo").text("Added to your likes!");
+     //update the db 
     }
     else{
     // UNlike by clicking it again
      $(this).removeClass("likedInfo").addClass("noLikes").text("Like this");
+     //update db 
     }
 
      
-
 });

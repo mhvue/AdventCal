@@ -9,6 +9,11 @@ module.exports = (sequelize, DataTypes)=> {
         },
         factsInfo: {
             type: DataTypes.STRING
+        },
+        likes:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+
         }
     });
 
