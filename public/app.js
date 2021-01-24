@@ -161,7 +161,6 @@ $("td").on("click",function(){
 //Like Button 
 //when click Like, it gets posted to dinofact db. 
 //then we can do get to show all like facts 
-
 $(".btn-primary").addClass("noLikes").on("click",function(){
 
      //toggle btwn Liked and added to Likes plus the ability to unlike and an option to add to Likes
@@ -175,6 +174,10 @@ $(".btn-primary").addClass("noLikes").on("click",function(){
      $(this).removeClass("likedInfo").addClass("noLikes").text("Like this");
      //update db 
     }
+});
 
-     
+//view likes
+$("#viewLikes-btn").on("click", function(){
+     $(".msgModal").modal();
+     //have a get here to show all liked facts
 });
