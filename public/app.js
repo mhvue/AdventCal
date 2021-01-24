@@ -77,18 +77,17 @@ $("td").on("click",function(){
           //no image, but have fact and link
           if(data.image.imagesInfo === null){
                $(".dinoFactHolder").html(
-                    data.factsInfo + 
-                    "<a href='" + data.link.linksInfo + "' target ='_blank'>Click here</a>");
+                    data.factsInfo + "<a href='" + data.link.linksInfo + "' target ='_blank'>Click here</a>").attr("data-Num", getID);
           }
            //no link but have fact and image 
           else if(data.link.linksInfo === null){
                $(".dinoFactHolder").html(
                     data.factsInfo + 
-                    "<img src='"+ data.image.imagesInfo + "'"+ ">");
+                    "<img src='"+ data.image.imagesInfo + "'"+ ">").attr("data-Num", getID);
           }
           //have no image and link, but only have facts 
           else if (data.image.imagesInfo === null && data.link.linksInfo === null){
-               $(".dinoFactHolder").html(data.factsInfo)
+               $(".dinoFactHolder").html(data.factsInfo).attr("data-Num", getID);
           }
             
         });
@@ -158,21 +157,30 @@ $("td").on("click",function(){
 });
 
 
-//Like Button 
-//when click Like, it gets posted to dinofact db. 
-//then we can do get to show all like facts 
+//what happens we click Like Button 
+//when click Like, it gets posted as TRUE dinofact db. 
 $(".btn-primary").addClass("noLikes").on("click",function(){
+     //get the fact by clicking on this button
+     const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
+     console.log(getFact)
 
      //toggle btwn Liked and added to Likes plus the ability to unlike and an option to add to Likes
     if($(this).hasClass("noLikes")){
-     //change text to capture the Liked clicked, update attr to liked
-     $(".btn-primary").removeClass("noLikes").addClass("likedInfo").text("Added to your likes!");
-     //update the db 
+          //change text to capture the Liked clicked, update class to liked
+          //update the db via PUT 
+          $.ajax({
+               url: "/api/likedFact/" + getFact,
+               type: "PUT",
+               success: function(updateLike){
+                    console.log(updateLike)
+                    $(".btn-primary").removeClass("noLikes").addClass("likedInfo").text("Added to your likes!");
+               }
+          });
     }
     else{
-    // UNlike by clicking it again
-     $(this).removeClass("likedInfo").addClass("noLikes").text("Like this");
-     //update db 
+     // UNlike by clicking it again
+          $(this).removeClass("likedInfo").addClass("noLikes").text("Like this");
+          //update db 
     }
 });
 
@@ -180,4 +188,5 @@ $(".btn-primary").addClass("noLikes").on("click",function(){
 $("#viewLikes-btn").on("click", function(){
      $(".msgModal").modal();
      //have a get here to show all liked facts
+     //if no likes yet, display msg of No Likes yet 
 });

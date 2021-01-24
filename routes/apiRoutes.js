@@ -1,5 +1,3 @@
-//going to contain my GET for facts
-
 // require my db 
 const db = require("../models");
 //require sequelize here 
@@ -23,6 +21,13 @@ module.exports = function(app){
             console.log(error)
         });
     });
+
+//add a Like via PUT
+    app.put("/api/likedFact/:id", function(req,res){
+        const dayNum = parseInt(req.params.id);
+        console.log("here" + dayNum)    //success! got req.params.id working 
+
+        //upate via sequelize methods 
+    })
 }
 
-//add a Like, comment option (via post)
