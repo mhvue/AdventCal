@@ -25,9 +25,21 @@ module.exports = function(app){
 //add a Like via PUT
     app.put("/api/likedFact/:id", function(req,res){
         const dayNum = parseInt(req.params.id);
-        console.log("here" + dayNum)    //success! got req.params.id working 
-
-        //upate via sequelize methods 
-    })
+        // console.log("here" + dayNum)   
+        db.facts.update(
+            {
+                likes:true
+            },
+            {
+                where:{
+                    id:req.params.id
+            }
+        }).then(function(dbLike){
+                console.log(dbLike)
+                res.json(dbLike)
+        }).catch(function(error){
+                console.log(error)
+        });
+    });
 }
 
