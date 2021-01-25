@@ -41,5 +41,25 @@ module.exports = function(app){
                 console.log(error)
         });
     });
+
+// update False for unlike 
+app.put("/api/unlikedFact/:id", function(req,res){
+    const dayNum = parseInt(req.params.id);
+    // console.log("here" + dayNum)   
+    db.facts.update(
+        {
+            likes:false
+        },
+        {
+            where:{
+                id:req.params.id
+        }
+    }).then(function(dbLike){
+            console.log("unlike" + dbLike)
+            res.json(dbLike)
+    }).catch(function(error){
+            console.log(error)
+    });
+});
 }
 

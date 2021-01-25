@@ -163,24 +163,30 @@ $(".btn-primary").addClass("noLikes").on("click",function(){
      //get the fact by clicking on this button
      const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
      console.log(getFact)
-
+     
      //toggle btwn Liked and added to Likes plus the ability to unlike and an option to add to Likes
-    if($(this).hasClass("noLikes")){
+   // if($(this).hasClass("noLikes")){
           //change text to capture the Liked clicked, update class to liked
           //update the db via PUT 
           $.ajax({
                url: "/api/likedFact/" + getFact,
                type: "PUT",
                success: function(updateLike){
-                    console.log(updateLike)
                     $(".btn-primary").removeClass("noLikes").addClass("likedInfo").text("Added to your likes!");
                }
           });
-    }
-    else{
+  //  }
+   // else{
+     if($(this).hasClass("likedInfo")){
      // UNlike by clicking it again
-          $(this).removeClass("likedInfo").addClass("noLikes").text("Like this");
-          //update db 
+          $.ajax({
+               url: "/api/unlikedFact/" + getFact,
+               type: "PUT",
+               success: function(updateLike){
+                    console.log(updateLike)
+                    $(this).removeClass("likedInfo").addClass("noLikes").text("Like this");
+               }
+          });
     }
 });
 
