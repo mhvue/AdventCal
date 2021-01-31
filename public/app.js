@@ -1,3 +1,5 @@
+//this is app.js is for testing purposes.
+
 //get the date 
 const date = new Date();
 //get the year
