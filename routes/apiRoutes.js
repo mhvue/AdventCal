@@ -60,5 +60,9 @@ app.put("/api/unlikedFact/:id", function(req,res){
             console.log(error)
     });
 });
+
+//get route here to display all likes 
+//need to go to facts db and look for facts with the Likes column that is TRUE to show 
+
 }
 
