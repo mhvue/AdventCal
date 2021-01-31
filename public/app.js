@@ -3,10 +3,8 @@ const date = new Date();
 //get the year
 const year = date.getFullYear();
 
-
 //CALENDAR
 $("h2").html("December " + year);
-// $("#count").html("<p>Days til Dec: " + countMath + "</p>");
 
 //generate dates 
 for(let i = -2; i <= 32; i++){
@@ -63,85 +61,65 @@ $("td").on("click",function(){
 //     const getNum= $(this).html();
 //     const currentDate = moment();
 
-    //commented out below as are not getting the current day anymore to show the specific fact for testing purposes 
-    // const getD = currentDate.format("D"); //get the current no. day 
-    // console.log(getD)
+//commented out below as are not getting the current day anymore to show the specific fact for testing purposes 
+// const getD = currentDate.format("D"); //get the current no. day 
+// console.log(getD)
     const getID= $(this).attr("id");
     console.log(getID)
     
    if(getID){
-        $.get("/api/fact/"+ parseInt(getID), function(data){
-             console.log(data)
-          $(".msgModal").modal();
+     $.get("/api/fact/"+ parseInt(getID), function(data){
+         // console.log(data)
+     $(".msgModal").modal();
 
-          //no image, but have fact and link
-          if(data.image.imagesInfo === null){
-               $(".dinoFactHolder").html(
-                    data.factsInfo + "<a href='" + data.link.linksInfo + "' target ='_blank'>Click here</a>").attr("data-Num", getID + "day");
-          }
-           //no link but have fact and image 
-          else if(data.link.linksInfo === null){
-               $(".dinoFactHolder").html(
-                    data.factsInfo + 
-                    "<img src='"+ data.image.imagesInfo + "'"+ ">").attr("data-Num", getID + "day");
-          }
-          //have no image and link, but only have facts 
-          else if (data.image.imagesInfo === null && data.link.linksInfo === null){
-               $(".dinoFactHolder").html(data.factsInfo).attr("data-Num", getID + "day");
-          }
-            
-
-//what happens we click Like Button 
-$(".btn-primary").on("click",function(){
-     //get the data attribute (in this case is number)
-     const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
-     console.log(getFact)
-     
-     //toggle btwn Liked and added to Likes plus the ability to unlike and an option to add to Likes
-
-     if(data.likes === false){
-          //update db to true for Like 
-           $.ajax({
-               url: "/api/likedFact/" + getFact,
-               type: "PUT",
-               success: function(updateLike){
-                    console.log(updateLike)
-                    $(".btn-primary").addClass("likedInfo").text("Added to your likes!");
-               }
-          });
+     //no image, but have fact and link
+     if(data.image.imagesInfo === null){
+          $(".dinoFactHolder").html(
+               data.factsInfo + "<a href='" + data.link.linksInfo + "' target ='_blank'>Click here</a>").attr("data-Num", getID + "day");
      }
-     
-     else{
-          //UNlike by clicking same btn again and updating db back to False 
-          $.ajax({
-               url: "/api/unlikedFact/" + getFact,
-               type: "PUT",
-               success: function(updateLike){
-                    console.log(updateLike)
-                    $(".btn-primary").removeClass("likedInfo").text("Like this");
-               }
-          });
+     //no link but have fact and image 
+     else if(data.link.linksInfo === null){
+          $(".dinoFactHolder").html(
+               data.factsInfo + 
+               "<img src='"+ data.image.imagesInfo + "'"+ ">").attr("data-Num", getID + "day");
      }
-    
-    //else{
-//      if($(this).hasClass("likedInfo")){
-//      // UNlike by clicking it again
-//           $.ajax({
-//                url: "/api/unlikedFact/" + getFact,
-//                type: "PUT",
-//                success: function(updateLike){
-//                     console.log(updateLike)
-//                     $(this).removeClass("likedInfo").text("Like this");
-//                }
-//           });
-//     }else{
-//           //change text to capture the Liked clicked, update class to liked
-//           //update the db via PUT 
-         
-      
-    //}
-});
-        });
+     //have no image and link, but only have facts 
+     else if (data.image.imagesInfo === null && data.link.linksInfo === null){
+          $(".dinoFactHolder").html(data.factsInfo).attr("data-Num", getID + "day");
+     }
+          
+
+     //adding to Likes 
+     $(".btn-primary").on("click",function(){
+          //get the data attribute (in this case is number)
+          const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
+          console.log(getFact)
+
+          //toggle btwn Added to Likes and Like this via adding or removing class of likedInfo
+          if(data.likes === false){
+               //update db to true for Like 
+               $.ajax({
+                    url: "/api/likedFact/" + getFact,
+                    type: "PUT",
+                    success: function(updateLike){
+                         console.log(updateLike)
+                         $(".btn-primary").addClass("likedInfo").text("Added to your likes!");
+                    }
+               });
+          }
+          else{
+               //UNlike by clicking same btn again and updating db back to False 
+               $.ajax({
+                    url: "/api/unlikedFact/" + getFact,
+                    type: "PUT",
+                    success: function(updateLike){
+                         console.log(updateLike)
+                         $(".btn-primary").removeClass("likedInfo").text("Like this");
+                    }
+               });
+          }
+     });
+     });
    }
    else{
         $(".msgModal").modal();
@@ -149,61 +127,61 @@ $(".btn-primary").on("click",function(){
    }
     
  
-    //as of 1/3/21: below will not work as it is for Dec. 2020. NEED TO UPDATE WITH NEW CODE WITH DB
-    //check if what is clicked matched today's date
-    //current date 
-    // if(selectDate == currentDate.format("MM/D/YYYY")){
-    //     $(".msgModal").modal();
-    //     $("#"+getID).removeClass("clickMe").addClass("clicked")
-    //     //show match getNum to match index-1
-    //     $(".modal-title").html("Fact For the Day for " + selectDate)
-    //     console.log(getD)
+//as of 1/3/21: below will not work as it is for Dec. 2020. NEED TO UPDATE WITH NEW CODE WITH DB
+//check if what is clicked matched today's date
+//current date 
+// if(selectDate == currentDate.format("MM/D/YYYY")){
+//     $(".msgModal").modal();
+//     $("#"+getID).removeClass("clickMe").addClass("clicked")
+//     //show match getNum to match index-1
+//     $(".modal-title").html("Fact For the Day for " + selectDate)
+//     console.log(getD)
 
-    //     $.get("/api/dinosaurFact/"+ parseInt(getD), function(data){
-    //        // console.log(data.facts)
-           
-    //        $(".dinoFactHolder").html(data.facts)
-    //     });
-    
-    // }
-    //  //previous date
-    // //whatever is clicked on, have to check to see if less than current num
-    // else if(parseInt(getNum) < parseInt(getD)){
-    //     const prevDay = parseInt(getNum);
-    //     $(".msgModal").modal();
-    //     $("#"+getID).addClass("clicked")
-    //     $(".modal-title").html("Fact For the Day for " + selectDate)
-
-    //     $.get("/api/dinosaurFact/"+ prevDay, function(data){
-    //         console.log(data,  data.dinoLink.links)
-    //         const infoFact = data.facts;
-    //         const infoLink = data.dinoLink.links;
-
-    //         if(infoLink === null){
-    //             $(".dinoFactHolder").html(infoFact)
-    //         }
-    //         else{
-    //             $(".dinoFactHolder").html(infoFact + " "+ 
-    //             "<a href=" + infoLink + " target='_blank'>Click Here</a>")
-    //         }
+//     $.get("/api/dinosaurFact/"+ parseInt(getD), function(data){
+//        // console.log(data.facts)
           
-    //      });
-        
-    // }
+//        $(".dinoFactHolder").html(data.facts)
+//     });
 
-    //for areas with no dates/num on it  
-    // else if(getNum == ""){
-    //     $(".msgModal").modal();
-    //     $(".dinoFactHolder").html("No date here");
-    //     $(".modal-title").html("")
+// }
+//  //previous date
+// //whatever is clicked on, have to check to see if less than current num
+// else if(parseInt(getNum) < parseInt(getD)){
+//     const prevDay = parseInt(getNum);
+//     $(".msgModal").modal();
+//     $("#"+getID).addClass("clicked")
+//     $(".modal-title").html("Fact For the Day for " + selectDate)
 
-    // }
-    // //future dates = cannot show 
-    // else{
-    //     $(".msgModal").modal();
-    //     $(".modal-title").html("")
-    //     $(".dinoFactHolder").html("Not time to see this fact yet");
-    // }
+//     $.get("/api/dinosaurFact/"+ prevDay, function(data){
+//         console.log(data,  data.dinoLink.links)
+//         const infoFact = data.facts;
+//         const infoLink = data.dinoLink.links;
+
+//         if(infoLink === null){
+//             $(".dinoFactHolder").html(infoFact)
+//         }
+//         else{
+//             $(".dinoFactHolder").html(infoFact + " "+ 
+//             "<a href=" + infoLink + " target='_blank'>Click Here</a>")
+//         }
+     
+//      });
+     
+// }
+
+//for areas with no dates/num on it  
+// else if(getNum == ""){
+//     $(".msgModal").modal();
+//     $(".dinoFactHolder").html("No date here");
+//     $(".modal-title").html("")
+
+// }
+// //future dates = cannot show 
+// else{
+//     $(".msgModal").modal();
+//     $(".modal-title").html("")
+//     $(".dinoFactHolder").html("Not time to see this fact yet");
+// }
  
 });
 
