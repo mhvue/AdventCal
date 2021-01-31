@@ -52,7 +52,7 @@ $("td").on("click",function(){
      $.get("/api/fact/"+ parseInt(getID), function(data){
           console.log(data)
      $(".msgModal").modal();
-
+     $(".btn-primary").attr("id","btn-"+getID)
      //no image, but have fact and link
      if(data.image.imagesInfo === null){
           $(".dinoFactHolder").html(
@@ -71,36 +71,53 @@ $("td").on("click",function(){
           
 
      //adding to Likes 
-     $(".btn-primary").on("click",function(){
-          //get the data attribute (in this case is number)
-          const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
-          console.log(getFact)
 
           //toggle btwn Added to Likes and Like this via adding or removing class of likedInfo
           //PROBLEM: all the buttons are text and class updated. need to fix
-          if(data.likes === false){
-               //update db to true for Like 
-               $.ajax({
-                    url: "/api/likedFact/" + getFact,
-                    type: "PUT",
-                    success: function(updateLike){
-                         console.log(updateLike)
-                         $(".btn-primary").addClass("likedInfo").text("Added to your likes!");
-                    }
-               });
-          }
-          else{
-               //UNlike by clicking same btn again and updating db back to False 
+          if(data.likes === true) {
+              // console.log("true")
+              $("#btn-"+ getID).addClass("likedInfo").text("Added to your likes!");
+
+               $("#btn-"+ getID).on("click", function(){
+                    console.log("here")
+                    //get the data attribute (in this case is number)
+                    const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
+                    console.log(getFact)
+               
                $.ajax({
                     url: "/api/unlikedFact/" + getFact,
                     type: "PUT",
                     success: function(updateLike){
                          console.log(updateLike)
-                         $(".btn-primary").removeClass("likedInfo").text("Like this");
                     }
                });
+            });
+          }   
+          //UNlike by clicking same btn again and updating db back to False 
+         else{
+               $("#btn-"+ getID).removeClass("likedInfo").text("Like this");
+
+               $("#btn-"+ getID).on("click", function(){
+               console.log("here")
+               //get the data attribute (in this case is number)
+               const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
+               console.log(getFact)
+          
+               $.ajax({
+                    url: "/api/likedFact/" + getFact,
+                    type: "PUT",
+                    success: function(updateLike){
+                         console.log(updateLike)
+                         //$("#btn-"+ getID).removeClass("likedInfo").text("Like this");
+                    }
+               });
+       });
+               
+               
           }
-     });
+        
+     
+         // });
      });
    }
    else{
