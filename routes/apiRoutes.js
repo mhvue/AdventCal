@@ -10,14 +10,12 @@ module.exports = function(app){
         const dayNum = parseInt(req.params.id);
 
         //we are going to find the day by primary key in our table as our pk is same as our day number 
-        //include the like info from db 
         db.facts.findByPk(dayNum,{
             include:[
                 {model: db.links},
                 {model: db.images},
                 ]
         }).then(function(fact){
-            console.log(fact)
             res.json(fact);
         }).catch(function(error){
             console.log(error)
@@ -38,7 +36,6 @@ module.exports = function(app){
                     id:req.params.id
             }
         }).then(function(dbLike){
-                console.log(dbLike)
                 res.json(dbLike)
         }).catch(function(error){
                 console.log(error)
@@ -58,7 +55,6 @@ app.put("/api/unlikedFact/:id", function(req,res){
                 id:req.params.id
         }
     }).then(function(dbLike){
-            console.log("unlike" + dbLike)
             res.json(dbLike)
     }).catch(function(error){
             console.log(error)
