@@ -50,7 +50,7 @@ $("td").on("click",function(){
     
    if(getID){
      $.get("/api/fact/"+ parseInt(getID), function(data){
-         // console.log(data)
+          console.log(data)
      $(".msgModal").modal();
 
      //no image, but have fact and link
@@ -77,6 +77,7 @@ $("td").on("click",function(){
           console.log(getFact)
 
           //toggle btwn Added to Likes and Like this via adding or removing class of likedInfo
+          //PROBLEM: all the buttons are text and class updated. need to fix
           if(data.likes === false){
                //update db to true for Like 
                $.ajax({
@@ -110,10 +111,9 @@ $("td").on("click",function(){
 });
 
 
-
 //view likes
 $("#viewLikes-btn").on("click", function(){
      $(".msgModal").modal();
-     //have a get here to show all liked facts
+     //have a get here to show all liked facts in the modal
      //if no likes yet, display msg of No Likes yet 
 });
