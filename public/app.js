@@ -71,25 +71,76 @@ $("td").on("click",function(){
     
    if(getID){
         $.get("/api/fact/"+ parseInt(getID), function(data){
-             
+             console.log(data)
           $(".msgModal").modal();
 
           //no image, but have fact and link
           if(data.image.imagesInfo === null){
                $(".dinoFactHolder").html(
-                    data.factsInfo + "<a href='" + data.link.linksInfo + "' target ='_blank'>Click here</a>").attr("data-Num", getID);
+                    data.factsInfo + "<a href='" + data.link.linksInfo + "' target ='_blank'>Click here</a>").attr("data-Num", getID + "day");
           }
            //no link but have fact and image 
           else if(data.link.linksInfo === null){
                $(".dinoFactHolder").html(
                     data.factsInfo + 
-                    "<img src='"+ data.image.imagesInfo + "'"+ ">").attr("data-Num", getID);
+                    "<img src='"+ data.image.imagesInfo + "'"+ ">").attr("data-Num", getID + "day");
           }
           //have no image and link, but only have facts 
           else if (data.image.imagesInfo === null && data.link.linksInfo === null){
-               $(".dinoFactHolder").html(data.factsInfo).attr("data-Num", getID);
+               $(".dinoFactHolder").html(data.factsInfo).attr("data-Num", getID + "day");
           }
             
+
+//what happens we click Like Button 
+$(".btn-primary").on("click",function(){
+     //get the data attribute (in this case is number)
+     const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
+     console.log(getFact)
+     
+     //toggle btwn Liked and added to Likes plus the ability to unlike and an option to add to Likes
+
+     if(data.likes === false){
+          //update db to true for Like 
+           $.ajax({
+               url: "/api/likedFact/" + getFact,
+               type: "PUT",
+               success: function(updateLike){
+                    console.log(updateLike)
+                    $(".btn-primary").addClass("likedInfo").text("Added to your likes!");
+               }
+          });
+     }
+     
+     else{
+          //UNlike by clicking same btn again and updating db back to False 
+          $.ajax({
+               url: "/api/unlikedFact/" + getFact,
+               type: "PUT",
+               success: function(updateLike){
+                    console.log(updateLike)
+                    $(".btn-primary").removeClass("likedInfo").text("Like this");
+               }
+          });
+     }
+    
+    //else{
+//      if($(this).hasClass("likedInfo")){
+//      // UNlike by clicking it again
+//           $.ajax({
+//                url: "/api/unlikedFact/" + getFact,
+//                type: "PUT",
+//                success: function(updateLike){
+//                     console.log(updateLike)
+//                     $(this).removeClass("likedInfo").text("Like this");
+//                }
+//           });
+//     }else{
+//           //change text to capture the Liked clicked, update class to liked
+//           //update the db via PUT 
+         
+      
+    //}
+});
         });
    }
    else{
@@ -157,38 +208,6 @@ $("td").on("click",function(){
 });
 
 
-//what happens we click Like Button 
-//when click Like, it gets posted as TRUE dinofact db. 
-$(".btn-primary").addClass("noLikes").on("click",function(){
-     //get the fact by clicking on this button
-     const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
-     console.log(getFact)
-     
-     //toggle btwn Liked and added to Likes plus the ability to unlike and an option to add to Likes
-   // if($(this).hasClass("noLikes")){
-          //change text to capture the Liked clicked, update class to liked
-          //update the db via PUT 
-          $.ajax({
-               url: "/api/likedFact/" + getFact,
-               type: "PUT",
-               success: function(updateLike){
-                    $(".btn-primary").removeClass("noLikes").addClass("likedInfo").text("Added to your likes!");
-               }
-          });
-  //  }
-   // else{
-     if($(this).hasClass("likedInfo")){
-     // UNlike by clicking it again
-          $.ajax({
-               url: "/api/unlikedFact/" + getFact,
-               type: "PUT",
-               success: function(updateLike){
-                    console.log(updateLike)
-                    $(this).removeClass("likedInfo").addClass("noLikes").text("Like this");
-               }
-          });
-    }
-});
 
 //view likes
 $("#viewLikes-btn").on("click", function(){

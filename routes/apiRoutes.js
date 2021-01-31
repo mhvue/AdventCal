@@ -9,23 +9,26 @@ module.exports = function(app){
         //our id is going be our day number from front end 
         const dayNum = parseInt(req.params.id);
 
-        //we are going to find the day by primary key in our table as our pk is samea as our day number 
+        //we are going to find the day by primary key in our table as our pk is same as our day number 
+        //include the like info from db 
         db.facts.findByPk(dayNum,{
             include:[
                 {model: db.links},
-                {model: db.images}
+                {model: db.images},
                 ]
         }).then(function(fact){
+            console.log(fact)
             res.json(fact);
         }).catch(function(error){
             console.log(error)
         });
     });
 
-//add a Like via PUT
+
+//add a Like to True via PUT
     app.put("/api/likedFact/:id", function(req,res){
         const dayNum = parseInt(req.params.id);
-        // console.log("here" + dayNum)   
+         console.log("here" + dayNum)   
         db.facts.update(
             {
                 likes:true
@@ -42,10 +45,10 @@ module.exports = function(app){
         });
     });
 
-// update False for unlike 
+// update like back to False
 app.put("/api/unlikedFact/:id", function(req,res){
     const dayNum = parseInt(req.params.id);
-    // console.log("here" + dayNum)   
+     console.log("hereAgain" + dayNum)   
     db.facts.update(
         {
             likes:false
