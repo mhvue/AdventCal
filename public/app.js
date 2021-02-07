@@ -53,6 +53,11 @@ $("td").on("click",function(){
           console.log(data)
      $(".msgModal").modal();
      $(".btn-primary").attr("id","btn-"+getID)
+     
+     //this is for Likes status, if likes is True, then show msg to user that fact is already liked 
+     if(data.likes === true){
+          $("#btn-"+getID).addClass("likedInfo").text("Added to your likes!");
+     }
      //no image, but have fact and link
      if(data.image.imagesInfo === null){
           $(".dinoFactHolder").html(
@@ -75,6 +80,7 @@ $("td").on("click",function(){
         $(".dinoFactHolder").html("nothing here")
    }
     
+  
 });
 
 
@@ -83,38 +89,31 @@ $(".btn-primary").on("click", function(){
      console.log("here")
      //get the data attribute (in this case is number)
      const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
-     const btnId = $(this).attr("id");
-     console.log(getFact, btnId)
+     console.log(getFact)
 
-     //get likes here from db 
-     
-     //toggle btwn Added to Likes and Like this via adding or removing class of likedInfo
-     //PROBLEM: all the buttons are text and class updated. need to fix
-     if($("#"+btnId).hasClass("likedInfo")){
-          console.log("ererere")
-          $.ajax({
-               url: "/api/likedFact/" + getFact,
-               type: "PUT",
-               success: function(updateLike){
-                    console.log(updateLike)
-                    $("#"+btnId).removeClass("likedInfo").text("Like this");
-               }
-          });
-     }
-     //UNlike by clicking same btn again and updating db back to False 
+          if($(this).hasClass("likedInfo")){
+               $.ajax({
+                    url: "/api/unlikedFact/" + getFact,
+                    type: "PUT",
+                    success: function(updateLike){
+                         console.log(updateLike)
+                         $("#"+btnId).removeClass("likedInfo").text("Like this");
 
-     else{
-        //  $("#"+btnId).addClass("likedInfo").text("Added to your likes!");
-          $.ajax({
-               url: "/api/unlikedFact/" + getFact,
-               type: "PUT",
-               success: function(updateLike){
-                    console.log(updateLike)
-                    $("#"+btnId).addClass("likedInfo").text("Added to your likes!");
-     
-               }
-          });
-     }
+                    }
+               });
+          }
+          //UNlike by clicking same btn again and updating db back to False 
+          else{
+               $.ajax({
+                    url: "/api/likedFact/" + getFact,
+                    type: "PUT",
+                    success: function(updateLike){
+                         console.log(updateLike)
+                         $("#"+btnId).addClass("likedInfo").text("Added to your likes!");
+                    }
+               });
+            
+          }
 
      });
 
