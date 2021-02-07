@@ -60,7 +60,7 @@ module.exports = function(app){
         });
     });
 
-//get route here to display all likes 
+//get route here to display all likes = NEED TO TEST THIS
     app.get("/api/getLikes", function(req, res){
 //need to go to facts db and look for facts with the Likes column that is TRUE to show 
         db.facts.findAll({
@@ -82,9 +82,8 @@ module.exports = function(app){
 
         db.facts.findByPk(dayNum,
             {
-            attributes: ["likes"]
+             attributes: ["likes"]
         }).then(function(likeDb){
-            console.log(likeDb)
             res.json(likeDb)
         }).catch(function(error){
             console.log(error)
