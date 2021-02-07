@@ -75,5 +75,21 @@ module.exports = function(app){
         });
     });
 
+
+//get like info from a specific fact
+    app.get("/api/getFactLike/:id",function(req,res){
+        const dayNum = parseInt(req.params.id);
+
+        db.facts.findByPk(dayNum,
+            {
+            attributes: ["likes"]
+        }).then(function(likeDb){
+            console.log(likeDb)
+            res.json(likeDb)
+        }).catch(function(error){
+            console.log(error)
+        })
+    });
+
 }
 

@@ -68,56 +68,6 @@ $("td").on("click",function(){
      else if (data.image.imagesInfo === null && data.link.linksInfo === null){
           $(".dinoFactHolder").html(data.factsInfo).attr("data-Num", getID + "day");
      }
-          
-
-     //adding to Likes 
-
-          //toggle btwn Added to Likes and Like this via adding or removing class of likedInfo
-          //PROBLEM: all the buttons are text and class updated. need to fix
-          if(data.likes === true) {
-              // console.log("true")
-              $("#btn-"+ getID).addClass("likedInfo").text("Added to your likes!");
-
-               $("#btn-"+ getID).on("click", function(){
-                    console.log("here")
-                    //get the data attribute (in this case is number)
-                    const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
-                    console.log(getFact)
-               
-               $.ajax({
-                    url: "/api/unlikedFact/" + getFact,
-                    type: "PUT",
-                    success: function(updateLike){
-                         console.log(updateLike)
-                    }
-               });
-            });
-          }   
-          //UNlike by clicking same btn again and updating db back to False 
-         else{
-               $("#btn-"+ getID).removeClass("likedInfo").text("Like this");
-
-               $("#btn-"+ getID).on("click", function(){
-               console.log("here")
-               //get the data attribute (in this case is number)
-               const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
-               console.log(getFact)
-          
-               $.ajax({
-                    url: "/api/likedFact/" + getFact,
-                    type: "PUT",
-                    success: function(updateLike){
-                         console.log(updateLike)
-                         //$("#btn-"+ getID).removeClass("likedInfo").text("Like this");
-                    }
-               });
-       });
-               
-               
-          }
-        
-     
-         // });
      });
    }
    else{
@@ -126,6 +76,47 @@ $("td").on("click",function(){
    }
     
 });
+
+
+//adding to Likes 
+$(".btn-primary").on("click", function(){
+     console.log("here")
+     //get the data attribute (in this case is number)
+     const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
+     const btnId = $(this).attr("id");
+     console.log(getFact, btnId)
+
+     //get likes here from db 
+     
+     //toggle btwn Added to Likes and Like this via adding or removing class of likedInfo
+     //PROBLEM: all the buttons are text and class updated. need to fix
+     if($("#"+btnId).hasClass("likedInfo")){
+          console.log("ererere")
+          $.ajax({
+               url: "/api/likedFact/" + getFact,
+               type: "PUT",
+               success: function(updateLike){
+                    console.log(updateLike)
+                    $("#"+btnId).removeClass("likedInfo").text("Like this");
+               }
+          });
+     }
+     //UNlike by clicking same btn again and updating db back to False 
+
+     else{
+        //  $("#"+btnId).addClass("likedInfo").text("Added to your likes!");
+          $.ajax({
+               url: "/api/unlikedFact/" + getFact,
+               type: "PUT",
+               success: function(updateLike){
+                    console.log(updateLike)
+                    $("#"+btnId).addClass("likedInfo").text("Added to your likes!");
+     
+               }
+          });
+     }
+
+     });
 
 
 //view likes
