@@ -57,6 +57,8 @@ $("td").on("click",function(){
      //this is for Likes status, if likes is True, then show msg to user that fact is already liked 
      if(data.likes === true){
           $("#btn-"+getID).addClass("likedInfo").text("Added to your likes!");
+     }else{
+          $("#btn-"+getID).removeClass("likedInfo").text("Like this");
      }
      //no image, but have fact and link
      if(data.image.imagesInfo === null){
