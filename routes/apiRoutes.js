@@ -67,7 +67,11 @@ module.exports = function(app){
             where: {
                 likes: true
             }
-        }).then(function(likes){
+        },{include:[{
+            model: db.links,
+            model: db.images,
+        }]
+    }).then(function(likes){
             console.log(likes)
             res.json(likes)
         }).catch(function(error){

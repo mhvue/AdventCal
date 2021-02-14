@@ -60,6 +60,7 @@ $("td").on("click",function(){
      }else{
           $("#btn-"+getID).removeClass("likedInfo").text("Like this");
      }
+
      //no image, but have fact and link
      if(data.image.imagesInfo === null){
           $(".dinoFactHolder").html(
@@ -88,12 +89,9 @@ $("td").on("click",function(){
 
 //adding to Likes 
 $(".btn-primary").on("click", function(){
-     console.log("here")
      //get the data attribute (in this case is number)
      const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
-     console.log(getFact)
      const btnId = $(this).attr("id");
-     console.log(btnId)
 
           if($(this).hasClass("likedInfo")){
                $.ajax({
@@ -102,7 +100,6 @@ $(".btn-primary").on("click", function(){
                     success: function(updateLike){
                          console.log(updateLike)
                          $("#"+btnId).removeClass("likedInfo").text("Like this");
-
                     }
                });
           }
@@ -124,7 +121,18 @@ $(".btn-primary").on("click", function(){
 
 //view likes
 $("#viewLikes-btn").on("click", function(){
-     $(".msgModal").modal();
+
+     $.get("/api/getLikes", function(data){
+          $(".msgModal").modal();
+         // console.log(data)
+          //append data in the modal
+          for(let i = 0 ; i < data.length; i ++){
+               console.log(data[i])
+               $(".dinoFactHolder").append(data[i].factsInfo)
+          }
+        
+     });
+   
      //have a get here to show all liked facts in the modal
      //if no likes yet, display msg of No Likes yet 
 });
