@@ -52,6 +52,7 @@ $("td").on("click",function(){
      $.get("/api/fact/"+ parseInt(getID), function(data){
           console.log(data)
      $(".msgModal").modal();
+     $(".btn-primary").show();
      $(".btn-primary").attr("id","btn-"+getID)
      
      //this is for Likes status, if likes is True, then show msg to user that fact is already liked 
@@ -124,15 +125,27 @@ $("#viewLikes-btn").on("click", function(){
 
      $.get("/api/getLikes", function(data){
           $(".msgModal").modal();
+          $(".btn-primary").hide();
+          $(".modal-title").html("Your Likes!");
          // console.log(data)
           //append data in the modal
           for(let i = 0 ; i < data.length; i ++){
-               console.log(data[i])
-               $(".dinoFactHolder").append("<br>"+data[i].factsInfo + "<br>")
+               if(data[i].image.imagesInfo === null){
+                    $(".dinoFactHolder").append("<ul><li>Day "+data[i].id + " " +
+                         data[i].factsInfo + "<a href='" + data[i].link.linksInfo + "' target ='_blank'>Click here</a>"+ "<br>");
+               }
+               //no link but have fact and image 
+               else if(data[i].link.linksInfo === null){
+                    $(".dinoFactHolder").append("<ul><li>Day "+data[i].id + " " +
+                         data[i].factsInfo + 
+                         "<img src='"+ data[i].image.imagesInfo + "'"+ ">"+"<br>");
+               }
+               //have no image and link, but only have facts 
+               else if (data[i].image.imagesInfo === null && data[i].link.linksInfo === null){
+                    $(".dinoFactHolder").append("<ul><li>Day "+data[i].id + " " + data[i].factsInfo + "<br>");
+               }
           }
         
      });
-   
-     //have a get here to show all liked facts in the modal
-     //if no likes yet, display msg of No Likes yet 
+
 });
