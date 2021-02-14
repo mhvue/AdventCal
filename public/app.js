@@ -124,6 +124,7 @@ $(".btn-primary").on("click", function(){
 $("#viewLikes-btn").on("click", function(){
 
      $.get("/api/getLikes", function(data){
+
           $(".msgModal").modal();
           $(".btn-primary").hide();
           $(".modal-title").html("Your Likes!");
@@ -147,5 +148,11 @@ $("#viewLikes-btn").on("click", function(){
           }
         
      });
+
+     //remove all likes 
+     const removeBtn = $("<button>").html("Remove all likes").addClass("btn btn-secondary");
+     $(".msgModal").modal();
+     $(".modal-footer").append(removeBtn)
+
 
 });
