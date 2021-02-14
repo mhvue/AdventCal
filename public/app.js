@@ -90,6 +90,8 @@ $(".btn-primary").on("click", function(){
      //get the data attribute (in this case is number)
      const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
      console.log(getFact)
+     const btnId = $(this).attr("id");
+     console.log(btnId)
 
           if($(this).hasClass("likedInfo")){
                $.ajax({
