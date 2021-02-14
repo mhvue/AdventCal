@@ -66,11 +66,15 @@ module.exports = function(app){
         db.facts.findAll({
             where: {
                 likes: true
+            },
+        include:[
+            {
+                model: db.links
+            },
+            {
+                model: db.images
             }
-        },{include:[{
-            model: db.links,
-            model: db.images,
-        }]
+        ]
     }).then(function(likes){
             console.log(likes)
             res.json(likes)

@@ -128,7 +128,7 @@ $("#viewLikes-btn").on("click", function(){
           //append data in the modal
           for(let i = 0 ; i < data.length; i ++){
                console.log(data[i])
-               $(".dinoFactHolder").append(data[i].factsInfo)
+               $(".dinoFactHolder").append("<br>"+data[i].factsInfo + "<br>")
           }
         
      });
