@@ -9,6 +9,7 @@ Template for those who want to e-advent calender for Dec. 2021. The one I made i
 ## More information to come 
 
 ## TO DO:
-* show All likes.
+* working on showing All Likes as a unordered list
+* work on remove button option from View Likes List 
 * more styling 
 
