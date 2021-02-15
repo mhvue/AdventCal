@@ -122,22 +122,22 @@ $(".btn-primary").on("click", function(){
 
 //view likes
 $("#viewLikes-btn").on("click", function(){
-
+     $(".btn-primary").hide();
      $.get("/api/getLikes", function(data){
-
           $(".msgModal").modal();
-          $(".btn-primary").hide();
+          //$(".btn-primary").hide();
           $(".modal-title").html("Your Likes!");
          // console.log(data)
           //append data in the modal
           for(let i = 0 ; i < data.length; i ++){
                if(data[i].image.imagesInfo === null){
-                    $(".dinoFactHolder").append("<ul><li>Day "+data[i].id + " " +
+                    //need to fix the ul,li. need only one ul and rest are li
+                    $(".dinoFactHolder").append("<ul><li>Day "+ data[i].id + " " +
                          data[i].factsInfo + "<a href='" + data[i].link.linksInfo + "' target ='_blank'>Click here</a>"+ "<br>");
                }
                //no link but have fact and image 
                else if(data[i].link.linksInfo === null){
-                    $(".dinoFactHolder").append("<ul><li>Day "+data[i].id + " " +
+                    $(".dinoFactHolder").append("<ul><li>Day "+ data[i].id + " " +
                          data[i].factsInfo + 
                          "<img src='"+ data[i].image.imagesInfo + "'"+ ">"+"<br>");
                }
@@ -150,9 +150,13 @@ $("#viewLikes-btn").on("click", function(){
      });
 
      //remove all likes 
-     const removeBtn = $("<button>").html("Remove all likes").addClass("btn btn-secondary");
+     const removeBtn = $("<button>").html("Remove all likes").addClass("btn btn-secondary").attr("id","removeBtn");
      $(".msgModal").modal();
      $(".modal-footer").append(removeBtn)
-
-
+     $("#removeBtn").on("click",function(){
+          console.log("clikkkkkk")
+          //api route to change all likes back to False . 
+          //still thinking if i can delete all at once. I would need to find a way to get the day num from each to update 
+     })
+     //remove all facts from front end 
 });

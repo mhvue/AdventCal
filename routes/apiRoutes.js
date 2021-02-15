@@ -11,9 +11,13 @@ module.exports = function(app){
         //we are going to find the day by primary key in our table as our pk is same as our day number 
         db.facts.findByPk(dayNum,{
             include:[
-                {model: db.links},
-                {model: db.images},
-                ]
+                {
+                    model: db.links
+                },
+                {
+                    model: db.images
+                },
+            ]
         }).then(function(fact){
             res.json(fact);
         }).catch(function(error){
@@ -60,14 +64,13 @@ module.exports = function(app){
         });
     });
 
-//get route here to display all likes = NEED TO TEST THIS
+//get route here to display all likes, including the assoicated models. 
     app.get("/api/getLikes", function(req, res){
-//need to go to facts db and look for facts with the Likes column that is TRUE to show 
         db.facts.findAll({
             where: {
                 likes: true
             },
-        include:[
+            include:[
             {
                 model: db.links
             },
@@ -98,5 +101,9 @@ module.exports = function(app){
         })
     });
 
-}
+
+// //change all likes from T to F ...still thinking about this one
+//     app.PUT("/api/")
+
+ }
 
