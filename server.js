@@ -5,14 +5,12 @@ const app = express();
 //connect to db here
 const db = require("./models")
 
-var bodyParser = require("body-parser");
 //connect to our port 
 const port = process.env.PORT || 3030
 //middleware here
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(express.static("public"));
 
 //routes here
