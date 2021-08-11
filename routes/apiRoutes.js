@@ -9,6 +9,7 @@ module.exports = function(app){
         //our id is going be our day number from front end 
         const dayNum = parseInt(req.params.id);
         //we are going to find the day by primary key in our table as our pk is same as our day number 
+        //we are going to include our links and images 
         db.facts.findByPk(dayNum,{
             include:[
                 {
@@ -36,7 +37,7 @@ module.exports = function(app){
             },
             {
                 where:{
-                    id:req.params.id
+                    id:dayNum
             }
         }).then(function(dbLike){
                 res.json(dbLike)

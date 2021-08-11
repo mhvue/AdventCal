@@ -51,31 +51,38 @@ $("td").on("click",function(){
    if(getID){
      $.get("/api/fact/"+ parseInt(getID), function(data){
           console.log(data)
+
+     const likes = data.likes;
+     const images = data.image.imagesInfo;
+     const links = data.link.linksInfo;
+     const facts = data.factsInfo;
+
      $(".msgModal").modal();
+     $(".modal-title").html(`Fact for Day ${getID}`);
      $(".btn-primary").show();
-     $(".btn-primary").attr("id","btn-"+getID)
-     
+     $(".btn-primary").attr("id",`btn-${getID}`)
+
      //this is for Likes status, if likes is True, then show msg to user that fact is already liked 
-     if(data.likes === true){
-          $("#btn-"+getID).addClass("likedInfo").text("Added to your likes!");
+     if(likes === true){
+          $(`#btn-${getID}`).addClass("likedInfo").text("Added to your likes!");
      }else{
-          $("#btn-"+getID).removeClass("likedInfo").text("Like this");
+          $(`#btn-${getID}`).removeClass("likedInfo").text("Like this");
      }
 
      //no image, but have fact and link
-     if(data.image.imagesInfo === null){
+     if(images === null){
           $(".dinoFactHolder").html(
-               data.factsInfo + "<a href='" + data.link.linksInfo + "' target ='_blank'>Click here</a>").attr("data-Num", getID + "day");
+               facts + "<a href='" + links + "' target ='_blank'>Click here</a>").attr("data-Num", `${getID}day`);
      }
      //no link but have fact and image 
-     else if(data.link.linksInfo === null){
+     else if(links === null){
           $(".dinoFactHolder").html(
-               data.factsInfo + 
-               "<img src='"+ data.image.imagesInfo + "'"+ ">").attr("data-Num", getID + "day");
+               facts + 
+               "<img src='"+ images + "'"+ ">").attr("data-Num", `${getID}day`);
      }
      //have no image and link, but only have facts 
-     else if (data.image.imagesInfo === null && data.link.linksInfo === null){
-          $(".dinoFactHolder").html(data.factsInfo).attr("data-Num", getID + "day");
+     else if (images === null && links === null){
+          $(".dinoFactHolder").html(facts).attr("data-Num", `${getID}day`);
      }
      });
    }
@@ -89,11 +96,12 @@ $("td").on("click",function(){
 
 
 //adding to Likes 
-$(".btn-primary").on("click", function(){
+$(".btn").on("click", function(){
      //get the data attribute (in this case is number)
      const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
      const btnId = $(this).attr("id");
 
+     //update via PUT on our db 
           if($(this).hasClass("likedInfo")){
                $.ajax({
                     url: "/api/unlikedFact/" + getFact,
@@ -127,36 +135,46 @@ $("#viewLikes-btn").on("click", function(){
           $(".msgModal").modal();
           //$(".btn-primary").hide();
           $(".modal-title").html("Your Likes!");
-         // console.log(data)
+     //     console.log(data)
           //append data in the modal
-          for(let i = 0 ; i < data.length; i ++){
-               if(data[i].image.imagesInfo === null){
-                    //need to fix the ul,li. need only one ul and rest are li
-                    $(".dinoFactHolder").append("<ul><li>Day "+ data[i].id + " " +
-                         data[i].factsInfo + "<a href='" + data[i].link.linksInfo + "' target ='_blank'>Click here</a>"+ "<br>");
+
+          for(let i = 0 ; i < data.length; i++){
+               const id = data[i].id;
+               const images = data[i].image.imagesInfo;
+               const links = data[i].link.linksInfo;
+               const facts = data[i].factsInfo;
+
+               //need to fix the append issue 
+               //facts and links only 
+               if(images === null){
+                    const infoAndLinkOnly = $("<li>").html("Day "+ id + " " +
+                         facts + "<a href='" + links + "' target ='_blank'>Click here</a>"+ "<br>");
+                      $(".dinoFactHolder").append("<ul>").append(infoAndLinkOnly)
+                 
                }
-               //no link but have fact and image 
-               else if(data[i].link.linksInfo === null){
-                    $(".dinoFactHolder").append("<ul><li>Day "+ data[i].id + " " +
-                         data[i].factsInfo + 
-                         "<img src='"+ data[i].image.imagesInfo + "'"+ ">"+"<br>");
+               // fact and image 
+               else if(links === null){
+                    const factAndImage = $("<li>").html("Day "+ id + " " +
+                     facts + "<img src='"+ images + "'"+ ">"+"<br>");
+                     $(".dinoFactHolder").append("<ul>").append(factAndImage)
+                
                }
-               //have no image and link, but only have facts 
-               else if (data[i].image.imagesInfo === null && data[i].link.linksInfo === null){
-                    $(".dinoFactHolder").append("<ul><li>Day "+data[i].id + " " + data[i].factsInfo + "<br>");
+               // only have facts 
+               else if (images === null && links === null){
+                    const factsOnly = $("<li>").html("Day "+ id + " " + facts + "<br>");
+                    $(".dinoFactHolder").append("<ul>").append(factsOnly)
                }
           }
         
      });
 
-     //remove all likes 
-     const removeBtn = $("<button>").html("Remove all likes").addClass("btn btn-secondary").attr("id","removeBtn");
-     $(".msgModal").modal();
-     $(".modal-footer").append(removeBtn)
-     $("#removeBtn").on("click",function(){
-          console.log("clikkkkkk")
-          //api route to change all likes back to False . 
-          //still thinking if i can delete all at once. I would need to find a way to get the day num from each to update 
-     })
+     //remove all likes -STILL IN THE PROCESS
+     // $(".msgModal").modal();
+     // $(".modal-footer").html(removeBtn)
+     // $("#removeBtn").on("click",function(){
+     //      console.log("clikkkkkk")
+     //      //api route to change all likes back to False . 
+     //      //still thinking if i can delete all at once. I would need to find a way to get the day num from each to update 
+     // })
      //remove all facts from front end 
 });
