@@ -135,37 +135,36 @@ $("#viewLikes-btn").on("click", function(){
           $(".msgModal").modal();
           //$(".btn-primary").hide();
           $(".modal-title").html("Your Likes!");
-     //     console.log(data)
-          //append data in the modal
-
+         console.log(data)
+          //append data in the modal    
           for(let i = 0 ; i < data.length; i++){
                const id = data[i].id;
                const images = data[i].image.imagesInfo;
                const links = data[i].link.linksInfo;
                const facts = data[i].factsInfo;
 
-               //need to fix the append issue 
-               //facts and links only 
+               const imageHolder = "<img src='"+ images + "'"+ ">";
+               const linkHolder =  "<a href='" + links + "' target ='_blank'>Click here</a>";
+               //need to fix the append issue
+
+               // //facts and links only 
                if(images === null){
-                    const infoAndLinkOnly = $("<li>").html("Day "+ id + " " +
-                         facts + "<a href='" + links + "' target ='_blank'>Click here</a>"+ "<br>");
-                      $(".dinoFactHolder").append("<ul>").append(infoAndLinkOnly)
-                 
+                    let infoAndLinkOnly = $("<li>").html("Day "+ id + " " + facts + linkHolder+ "<br>");
+                  $(".dinoFactHolder").append(infoAndLinkOnly)
+
                }
                // fact and image 
                else if(links === null){
-                    const factAndImage = $("<li>").html("Day "+ id + " " +
-                     facts + "<img src='"+ images + "'"+ ">"+"<br>");
-                     $(".dinoFactHolder").append("<ul>").append(factAndImage)
-                
+                    let infoAndImageOnly = $("<li>").html("Day "+ id + " " + facts + imageHolder +"<br>");
+                    $(".dinoFactHolder").append(infoAndImageOnly)
                }
                // only have facts 
                else if (images === null && links === null){
-                    const factsOnly = $("<li>").html("Day "+ id + " " + facts + "<br>");
-                    $(".dinoFactHolder").append("<ul>").append(factsOnly)
+                    let factsOnly = $("<li>").html("Day "+ id + " " + facts + "<br>");
+                    $(".dinoFactHolder").append(factsOnly)
                }
           }
-        
+         
      });
 
      //remove all likes -STILL IN THE PROCESS

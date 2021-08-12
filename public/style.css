@@ -2,10 +2,10 @@
     box-sizing: border-box;
 }
 
-/* body{
+body{
     background-image: url("./images/background.jpg");
     color: white;
-} */
+}
 
 th{
     border: 1px solid white;
