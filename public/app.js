@@ -50,8 +50,7 @@ $("td").on("click",function(){
     
    if(getID){
      $.get("/api/fact/"+ parseInt(getID), function(data){
-          console.log(data)
-
+    
      const likes = data.likes;
      const images = data.image.imagesInfo;
      const links = data.link.linksInfo;
@@ -61,9 +60,10 @@ $("td").on("click",function(){
      $(".modal-title").html(`Fact for Day ${getID}`);
      $(".btn-primary").show();
      $(".btn-primary").attr("id",`btn-${getID}`)
-
-     //this is for Likes status, if likes is True, then show msg to user that fact is already liked 
-     if(likes === true){
+          
+     
+     //this is for Likes status, if likes is True, then show msg on btn to user that fact is  liked
+      if(likes === true){
           $(`#btn-${getID}`).addClass("likedInfo").text("Added to your likes!");
      }else{
           $(`#btn-${getID}`).removeClass("likedInfo").text("Like this");
@@ -96,18 +96,20 @@ $("td").on("click",function(){
 
 
 //adding to Likes 
-$(".btn").on("click", function(){
+$(".likeBtn").on("click", function(){
      //get the data attribute (in this case is number)
      const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
      const btnId = $(this).attr("id");
+     console.log(getFact, btnId)
 
-     //update via PUT on our db 
+     //toggle btwn classes for ability of like and unlike
+             //update via PUT on our db 
           if($(this).hasClass("likedInfo")){
                $.ajax({
                     url: "/api/unlikedFact/" + getFact,
                     type: "PUT",
                     success: function(updateLike){
-                         console.log(updateLike)
+                         console.log('success unlike!'+updateLike)
                          $("#"+btnId).removeClass("likedInfo").text("Like this");
                     }
                });
@@ -136,34 +138,35 @@ $("#viewLikes-btn").on("click", function(){
           //$(".btn-primary").hide();
           $(".modal-title").html("Your Likes!");
          console.log(data)
-          //append data in the modal    
+          //append data in the modal  
+          
+           let ul =$("<ul>");
           for(let i = 0 ; i < data.length; i++){
                const id = data[i].id;
                const images = data[i].image.imagesInfo;
                const links = data[i].link.linksInfo;
                const facts = data[i].factsInfo;
-
+          
                const imageHolder = "<img src='"+ images + "'"+ ">";
                const linkHolder =  "<a href='" + links + "' target ='_blank'>Click here</a>";
-               //need to fix the append issue
-
-               // //facts and links only 
+       
                if(images === null){
-                    let infoAndLinkOnly = $("<li>").html("Day "+ id + " " + facts + linkHolder+ "<br>");
-                  $(".dinoFactHolder").append(infoAndLinkOnly)
+                    ul.append("<li>Day "+ id + " " + facts + linkHolder+ "<br>");
 
                }
                // fact and image 
-               else if(links === null){
-                    let infoAndImageOnly = $("<li>").html("Day "+ id + " " + facts + imageHolder +"<br>");
-                    $(".dinoFactHolder").append(infoAndImageOnly)
+               if(links === null){
+                    ul.append("<li>Day "+ id + " " + facts + imageHolder +"<br>");
                }
-               // only have facts 
-               else if (images === null && links === null){
-                    let factsOnly = $("<li>").html("Day "+ id + " " + facts + "<br>");
-                    $(".dinoFactHolder").append(factsOnly)
-               }
-          }
+               // // only have facts 
+               if (images === null && links === null){
+                    ul.append("<li>Day "+ id + " " + facts + "<br>");
+                    
+                }
+           }
+
+           $(".dinoFactHolder").html(ul)
+
          
      });
 
