@@ -69,21 +69,21 @@ $("td").on("click",function(){
           $(`#btn-${getID}`).removeClass("likedInfo").text("Like this");
      }
 
+     //facts 
+     let factHolder = "<p>"+ facts + "</p>";
      //no image, but have fact and link
-     if(images === null){
-          $(".dinoFactHolder").html(
-               facts + "<a href='" + links + "' target ='_blank'>Click here</a>").attr("data-Num", `${getID}day`);
+     if(images !== null){
+               factHolder += "<img src='"+ images + "'"+ ">";
+               //factHolder +="<a href='" + links + "' target ='_blank'>Click here</a>").attr("data-Num", `${getID}day`);
      }
+
      //no link but have fact and image 
-     else if(links === null){
-          $(".dinoFactHolder").html(
-               facts + 
-               "<img src='"+ images + "'"+ ">").attr("data-Num", `${getID}day`);
+     if(links !== null){
+               factHolder += "<a href='" + links + "' target ='_blank'>Click here</a>";
      }
-     //have no image and link, but only have facts 
-     else if (images === null && links === null){
-          $(".dinoFactHolder").html(facts).attr("data-Num", `${getID}day`);
-     }
+
+     $(".dinoFactHolder").html(factHolder).attr("data-Num", `${getID}day`)
+   
      });
    }
    else{
