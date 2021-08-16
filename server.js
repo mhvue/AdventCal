@@ -6,7 +6,7 @@ const app = express();
 const db = require("./models")
 
 //connect to our port 
-const port = process.env.PORT || 3030
+const port = process.env.PORT || 3000
 //middleware here
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
