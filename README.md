@@ -7,8 +7,6 @@ An e-advent calender for Dec. 2021. The one I made is Dinosaur theme containing 
 * You will need MySql
 * My imgDB only contain images from my local files. It is recommanded to upload images on another site and get the link from your image there instead.
 
-## More information to come 
-
 ## TO DO as of 8/15/2021
 * work on remove button option from View Likes List 
 * more styling 
