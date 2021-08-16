@@ -170,7 +170,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        factsInfo: "Mery Christmas!!<br> Did dinosaurs live in the cold too? yes! there are some bones found in the Arctic.",
+        factsInfo: "Merry Christmas!!<br> Did dinosaurs live in the cold too? yes! there are some bones found in the Arctic.",
         imageId: 14,
         linkId: 8,
         createdAt: new Date(),
@@ -212,7 +212,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        factsInfo: "Need one more dinofact.",
+        factsInfo: "The dinosaur with the longest name was Micropachycephalosaurus meaning 'tiny thick-headed lizard'..",
         imageId: 14,
         linkId: 9,
         createdAt: new Date(),
