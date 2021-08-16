@@ -13,8 +13,8 @@ for(let i = -2; i <= 32; i++){
     let getDays = i;
     let tdData = $("<td>").html(getDays).attr("data-date",`12/${i}/${year}`).attr("id",i) //updated this to i instead of td+i as the id for testing purposes 
 
-     //1st week
-    if(i == -2|| i == -1 || i == 0){
+     //1st week - appending nothing into td as there's no such numbered days. doing it this way to get 1 listed in calendar as per Dec. 2021 
+     if(i <= 0){
      $("#numberDays").append("<td>"+ "" + "</td>");
     }
     else if(i >=1 && i <= 4){
@@ -34,7 +34,7 @@ for(let i = -2; i <= 32; i++){
      }
       //5th week
     else{
-         if(i >= 32 && i == 32){
+          if(i >= 32){ //appending nothing into td as there's no such numbered days
             $("#numberDays5").append("<td>"+ "" + "</td>");
          }
          else{
@@ -62,24 +62,24 @@ $("td").on("click",function(){
      $(".btn-primary").attr("id",`btn-${getID}`)
           
      
-     //this is for Likes status, if likes is True, then show msg on btn to user that fact is  liked
-      if(likes === true){
+     //this is for Likes status, if likes is True, then show msg on btn to user that fact is liked
+     if(likes === true){
           $(`#btn-${getID}`).addClass("likedInfo").text("Added to your likes!");
      }else{
           $(`#btn-${getID}`).removeClass("likedInfo").text("Like this");
      }
 
-     //facts 
+     //facts -there will always be a fact to display.. but sometimes we will not have a image and/or link. need ifs to check for null on image or link
      let factHolder = "<p>"+ facts + "</p>";
-     //no image, but have fact and link
+
+     //no image
      if(images !== null){
-               factHolder += "<img src='"+ images + "'"+ ">";
-               //factHolder +="<a href='" + links + "' target ='_blank'>Click here</a>").attr("data-Num", `${getID}day`);
+          factHolder += "<img src='"+ images + "'"+ ">";
      }
 
-     //no link but have fact and image 
+     //no link
      if(links !== null){
-               factHolder += "<a href='" + links + "' target ='_blank'>Click here</a>";
+          factHolder += "<a href='" + links + "' target ='_blank'>Click here</a>";
      }
 
      $(".dinoFactHolder").html(factHolder).attr("data-Num", `${getID}day`)
@@ -88,7 +88,9 @@ $("td").on("click",function(){
    }
    else{
         $(".msgModal").modal();
-        $(".dinoFactHolder").html("nothing here")
+        $(".modal-title").html(``);
+        $(".btn-primary").hide();
+        $(".dinoFactHolder").html("Please click on numbered day to display a fact.")
    }
     
   
@@ -100,27 +102,25 @@ $(".likeBtn").on("click", function(){
      //get the data attribute (in this case is number)
      const getFact = $(this).parent().siblings(".modal-body").children().attr("data-Num");
      const btnId = $(this).attr("id");
-     console.log(getFact, btnId)
 
      //toggle btwn classes for ability of like and unlike
-             //update via PUT on our db 
+          //update via PUT on our db -UNlike by clicking same btn again and updating db back to False 
           if($(this).hasClass("likedInfo")){
                $.ajax({
                     url: "/api/unlikedFact/" + getFact,
                     type: "PUT",
                     success: function(updateLike){
-                         console.log('success unlike!'+updateLike)
+                         //change text on btn back to Like this to let user know he/she can like info again 
                          $("#"+btnId).removeClass("likedInfo").text("Like this");
                     }
                });
           }
-          //UNlike by clicking same btn again and updating db back to False 
           else{
+               //update our db - change Like to True for a specific fact. Change text of btn to let user know this fact is liked.
                $.ajax({
                     url: "/api/likedFact/" + getFact,
                     type: "PUT",
                     success: function(updateLike){
-                         console.log(updateLike)
                          $("#"+btnId).addClass("likedInfo").text("Added to your likes!");
                     }
                });
@@ -135,12 +135,11 @@ $("#viewLikes-btn").on("click", function(){
      $(".btn-primary").hide();
      $.get("/api/getLikes", function(data){
           $(".msgModal").modal();
-          //$(".btn-primary").hide();
-          $(".modal-title").html("Your Likes!");
-         console.log(data)
-          //append data in the modal  
-          
+          $(".modal-title").html("Your Likes");
+
+          //append data in the modal to dinoFactHolder as unordered list
            let ul =$("<ul>");
+
           for(let i = 0 ; i < data.length; i++){
                const id = data[i].id;
                const images = data[i].image.imagesInfo;
@@ -152,7 +151,6 @@ $("#viewLikes-btn").on("click", function(){
        
                if(images === null){
                     ul.append("<li>Day "+ id + " " + facts + linkHolder+ "<br>");
-
                }
                // fact and image 
                if(links === null){

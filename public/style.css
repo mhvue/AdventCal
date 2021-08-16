@@ -55,6 +55,9 @@ li{
 table{
     margin-top: 20px;
 }
+/* table,th,td {
+    border-collapse: collapse
+} */
 
 #contactMe{
     background-color: black;

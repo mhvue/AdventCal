@@ -210,6 +210,13 @@ module.exports = {
         linkId: 9,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        factsInfo: "Need one more dinofact.",
+        imageId: 14,
+        linkId: 9,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ]);
   
