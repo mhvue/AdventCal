@@ -62,7 +62,7 @@ module.exports = function(app){
         }).then(function(dbLike){
                 res.json(dbLike)
         }).catch(function(error){
-              //  console.log(error)
+                console.log(error)
         });
     });
 
@@ -81,7 +81,7 @@ module.exports = function(app){
             }
         ]
     }).then(function(likes){
-          //  console.log(likes)
+            console.log(likes)
             res.json(likes)
         }).catch(function(error){
           //  console.log(error)
