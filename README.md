@@ -1,6 +1,8 @@
 # AdventCalendar 
 
-An e-advent calender for Dec. 2021. The one I made is Dinosaur theme containing facts, images and links for dinosaur related things.  You can fork and edit this project based on any theme you like. Check it out: https://dry-lake-20084.herokuapp.com/ 
+An e-advent calender for Dec. 2021. The one I made is Dinosaur theme containing facts, images and links for dinosaur related things.  You can fork and edit this project based on any theme you like. Check it out: https://dry-lake-20084.herokuapp.com/
+
+I also made version without a database back in Dec. 2020: https://mhvue.github.io/dinosaurAdventCalendar/.  Eventually, I want to implement the same features such as not being able to click ahead. Play around with this one to see the slight differences. 
 
 ## What you will need: 
 * This is for those who are have some knowledge in programming. You will need to be able to add your own information in a database via the seeder files in this project. 
