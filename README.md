@@ -4,7 +4,7 @@ An e-advent calender for Dec. 2021. The one I made is Dinosaur theme containing 
 
 ## What you will need: 
 * This is for those who are have some knowledge in programming. You will need to be able to add your own information in a database via the seeder files in this project. 
-* You will need MySql
+* You will need MySql Workbench.
 * My imgDB only contain images from my local files. It is recommanded to upload images on another site and get the link from your image there instead.
 
 ## TO DO as of 8/15/2021
