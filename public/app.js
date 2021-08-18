@@ -148,24 +148,22 @@ $("#viewLikes-btn").on("click", function(){
           
                const imageHolder = "<img src='"+ images + "'"+ ">";
                const linkHolder =  "<a href='" + links + "' target ='_blank'>Click here</a>";
-       
+
                if(images === null){
-                    ul.append("<li>Day "+ id + " " + facts + linkHolder+ "<br>");
+                    ul.append("<li>  Day " + id + " " + facts + linkHolder+ "<br>");
                }
                // fact and image 
                if(links === null){
-                    ul.append("<li>Day "+ id + " " + facts + imageHolder +"<br>");
+                    ul.append("<li> Day "+ id + " " + facts + imageHolder +"<br>");
                }
                // // only have facts 
                if (images === null && links === null){
-                    ul.append("<li>Day "+ id + " " + facts + "<br>");
+                    ul.append("<li>  Day "+ id + " " + facts + "<br>");
                     
                 }
-           }
+            }
 
-           $(".dinoFactHolder").html(ul)
-
-         
+            $(".dinoFactHolder").html(ul)         
      });
 
      //remove all likes -STILL IN THE PROCESS
