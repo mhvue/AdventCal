@@ -9,6 +9,7 @@ I also made version without a database back in Dec. 2020: https://mhvue.github.i
 * You will need MySql Workbench.
 * My imgDB only contain images from my local files. It is recommanded to upload images on another site and get the link from your image there instead.
 * Knowledge how to deploy to heroku. If you need help, try this: https://www.youtube.com/watch?v=AQp7b-1356k 
+* Once deployed successfully to Heroku, you will neeed to seed your database. Watch this video on how to do that: https://www.youtube.com/watch?v=y7YwSIMLggo 
 
 ## TO DO as of 8/15/2021
 * bug that makes some fact appending more than once in view likes 
