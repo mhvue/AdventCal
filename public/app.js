@@ -8,7 +8,7 @@ const year = date.getFullYear();
 //CALENDAR
 $("h2").html("December " + year);
 
-//generate dates 
+//generate dates for the calendar
 for(let i = -2; i <= 32; i++){
     let getDays = i;
     let tdData = $("<td>").html(getDays).attr("data-date",`12/${i}/${year}`).attr("id",i) //updated this to i instead of td+i as the id for testing purposes 
@@ -69,24 +69,26 @@ $("td").on("click",function(){
           $(`#btn-${getID}`).removeClass("likedInfo").text("Like this");
      }
 
-     //facts -there will always be a fact to display.. but sometimes we will not have a image and/or link. need ifs to check for null on image or link
+     //facts -there will always be a fact to display.. but sometimes we will not have a image and/or link. need ifs to check for not null on image or link
      let factHolder = "<p>"+ facts + "</p>";
 
-     //no image
+     //image
      if(images !== null){
           factHolder += "<img src='"+ images + "'"+ ">";
      }
 
-     //no link
+     //link
      if(links !== null){
           factHolder += "<a href='" + links + "' target ='_blank'>Click here</a>";
      }
 
+     //insert the factHolder with or without link or image 
      $(".dinoFactHolder").html(factHolder).attr("data-Num", `${getID}day`)
    
      });
    }
    else{
+        //below is for when user clicks on td that is not numbered 
         $(".msgModal").modal();
         $(".modal-title").html(``);
         $(".btn-primary").hide();
@@ -144,7 +146,7 @@ $("#viewLikes-btn").on("click", function(){
                const id = data[i].id;
                const images = data[i].image.imagesInfo;
                const links = data[i].link.linksInfo;
-               const facts = data[i].factsInfo;
+               const facts= data[i].factsInfo;
           
                const imageHolder = "<img src='"+ images + "'"+ ">";
                const linkHolder =  "<a href='" + links + "' target ='_blank'>Click here</a>";
