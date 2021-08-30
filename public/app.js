@@ -152,15 +152,15 @@ $("#viewLikes-btn").on("click", function(){
                const linkHolder =  "<a href='" + links + "' target ='_blank'>Click here</a>";
 
                if(images === null){
-                    ul.append("<li>  Day " + id + " " + facts + linkHolder+ "<br>");
-               }
+                    ul.append("<li id=" +"likedDay-"+ id + ">" + "Day " + id + " " + facts + linkHolder+ "<br>").addClass("myLikes");
+               }""
                // fact and image 
                if(links === null){
-                    ul.append("<li> Day "+ id + " " + facts + imageHolder +"<br>");
+                    ul.append("<li id=" +"likedDay-"+ id + ">" +  "Day "+ id + " " + facts + imageHolder +"<br>").addClass("myLikes");
                }
                // // only have facts 
                if (images === null && links === null){
-                    ul.append("<li>  Day "+ id + " " + facts + "<br>");
+                    ul.append("<li id=" +"likedDay-"+ id + ">" + "Day "+ id + " " + facts + "<br>").addClass("myLikes");
                     
                 }
             }
@@ -168,13 +168,27 @@ $("#viewLikes-btn").on("click", function(){
             $(".dinoFactHolder").html(ul)         
      });
 
+     const removeBtn = $("<button>").text("Remove All").attr("id","removeBtn");
      //remove all likes -STILL IN THE PROCESS
-     // $(".msgModal").modal();
-     // $(".modal-footer").html(removeBtn)
-     // $("#removeBtn").on("click",function(){
-     //      console.log("clikkkkkk")
-     //      //api route to change all likes back to False . 
-     //      //still thinking if i can delete all at once. I would need to find a way to get the day num from each to update 
-     // })
+    // $(".msgModal").modal();
+     $(".modal-footer").html(removeBtn)
+     $("#removeBtn").on("click",function(){
+          console.log("clikkkkkk")
+          //remove one at atime
+          const removeFacts = $(this).parent().siblings(".modal-body").find("li").attr("id") //get the li id
+
+           console.log(removeFacts)
+
+           //remove all so grab ul class
+          //  const removeAll = $(this).parent().siblings(".modal-body").children().children().hasClass("myLikes")
+          //  console.log(removeAll)
+          //  $(".dinoFactHolder").empty(); //removes all from UI 
+
+          //api route to change all likes back to False . 
+
+
+          
+          //still thinking if i can delete all at once. I would need to find a way to get the day num from each to update 
+     })
      //remove all facts from front end 
 });
