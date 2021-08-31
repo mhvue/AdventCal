@@ -40,7 +40,6 @@ module.exports = function(app){
                     id:dayNum
             }
         }).then(function(dbLike){
-            console.log(dbLike)
                 res.json(dbLike)
         }).catch(function(error){
                 console.log(error)
@@ -81,10 +80,9 @@ module.exports = function(app){
             }
         ]
     }).then(function(likes){
-            console.log(likes)
             res.json(likes)
         }).catch(function(error){
-          //  console.log(error)
+            console.log(error)
         });
     });
 
@@ -99,13 +97,35 @@ module.exports = function(app){
         }).then(function(likeDb){
             res.json(likeDb)
         }).catch(function(error){
-          //  console.log(error)
+          console.log(error)
         })
     });
 
 
 // //change all likes from T to F ...still thinking about this one
-//     app.PUT("/api/")
+    app.put("/api/removeAllLikes", function(req, res) {
+        db.facts.findAll({
+            where: {
+                likes: true
+            },
+    }).then(function(likes){
+        db.facts.update(
+            {
+                likes:false
+            },
+            {
+                where:{
+                    likes:true
+            }
+        }).then(function(dbLikes){
+            console.log(dbLikes)
+        }).catch(function(error){
+            console.log(error)
+        });
+    }).catch(function(error){
+         console.log(error)
+    });
+})
 
  }
 
