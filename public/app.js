@@ -7,7 +7,7 @@ const year = date.getFullYear();
 
 //CALENDAR
 $("h2").html("December " + year);
-
+$(".removeAll").hide();
 //generate dates for the calendar
 for(let i = -2; i <= 32; i++){
     let getDays = i;
