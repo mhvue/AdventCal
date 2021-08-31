@@ -104,28 +104,30 @@ module.exports = function(app){
 
 // //change all likes from T to F ...still thinking about this one
     app.put("/api/removeAllLikes", function(req, res) {
-        db.facts.findAll({
-            where: {
-                likes: true
-            },
-    }).then(function(likes){
-        db.facts.update(
-            {
-                likes:false
-            },
-            {
-                where:{
-                    likes:true
-            }
-        }).then(function(dbLikes){
-            console.log(dbLikes)
-        }).catch(function(error){
-            console.log(error)
-        });
+        //console.log(req)
+    //     db.facts.update({
+    //         likes: false
+    //     }, {
+    //         where: {
+    //             likes: true
+    //         }
+    //     }).then(function(db){
+    //         console.log(db)
+    //     }).catch(function(error){
+    //         console.log(error)
+    //     })
+
+    // })
+    db.facts.findAll({
+        where: {
+            likes: true
+        },
+}).then(function(likes){
+    console.log(likes)
+        res.json(likes)
     }).catch(function(error){
-         console.log(error)
+        console.log(error)
     });
-})
+ });
 
- }
-
+}

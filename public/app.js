@@ -47,7 +47,7 @@ for(let i = -2; i <= 32; i++){
 //display facts for any day that is clicked on 
 $("td").on("click",function(){
     const getID= $(this).attr("id");
-    
+  
    if(getID){
      $.get("/api/fact/"+ parseInt(getID), function(data){
     
@@ -58,9 +58,9 @@ $("td").on("click",function(){
 
      $(".msgModal").modal();
      $(".modal-title").html(`Fact for Day ${getID}`);
-     $(".btn-primary").show();
+     $(".likeBtn").show();
      $(".btn-primary").attr("id",`btn-${getID}`);
-     $("#removeBtn").hide();
+     $(".removeAll").hide();
           
      
      //this is for Likes status, if likes is True, then show msg on btn to user that fact is liked
@@ -93,6 +93,7 @@ $("td").on("click",function(){
         $(".msgModal").modal();
         $(".modal-title").html(``);
         $(".btn-primary").hide();
+        $(".removeAll").hide();
         $(".dinoFactHolder").html("Please click on numbered day to display a fact.")
    }
     
@@ -135,8 +136,8 @@ $(".likeBtn").on("click", function(){
 
 //view likes
 $("#viewLikes-btn").on("click", function(){
-     $(".btn-primary").hide();
-     $.get("/api/getLikes", function(data){
+     $(".likeBtn").hide();
+     $.get("/api/getLikes/", function(data){
           $(".msgModal").modal();
           $(".modal-title").html("Your Likes");
 
@@ -152,48 +153,43 @@ $("#viewLikes-btn").on("click", function(){
                const imageHolder = "<img src='"+ images + "'"+ ">";
                const linkHolder =  "<a href='" + links + "' target ='_blank'>Click here</a>";
 
-               if(images === null){
-                    ul.append("<li class ='likedFact' id=" + id +"likedDay" + ">" + "Day " + id + " " + facts + linkHolder+ "<br>").addClass("myLikes");
-               }""
-               // fact and image 
-               if(links === null){
-                    ul.append("<li class ='likedFact' id=" + id +"likedDay" +  ">" +  "Day "+ id + " " + facts + imageHolder +"<br>").addClass("myLikes");
+               //fact only 
+               if(images === null && links === null){
+                    ul.append("<li class ='likedFact' id=" + id +"likedDay" + ">" + "Day " + id + " " + facts).addClass("myLikes");
                }
-               // // only have facts 
-               if (images === null && links === null){
-                    ul.append("<li class ='likedFact' id=" + id +"likedDay" +  ">" + "Day "+ id + " " + facts + "<br>").addClass("myLikes");
-                    
+
+               //images and fact
+               else if(links === null){
+                    ul.append("<li class ='likedFact' id=" + id +"likedDay" + ">" + "Day " + id + " " + facts + imageHolder + "<br>").addClass("myLikes");
+               }
+                
+               // fact and link
+               else if (images === null){
+                    ul.append("<li class ='likedFact' id=" + id +"likedDay" +  ">" + "Day "+ id + " " + facts + linkHolder + "<br>").addClass("myLikes");
                 }
             }
 
             $(".dinoFactHolder").html(ul)         
      });
 
-     const removeBtn = $("<button>").text("Remove All").attr("id","removeBtn");
      //remove all likes -STILL IN THE PROCESS
     // $(".msgModal").modal();
-     $(".modal-footer").html(removeBtn)
-     $("#removeBtn").on("click",function(){
-          console.log("clikkkkkk")
-          //remove one at a time feature 
-          // const removeFacts = $(this).parent().siblings(".modal-body").find(".likedFact") //get the li id
-
-          //  console.log(removeFacts)
-
-           //remove all so grab ul class
-          //  const removeAll = $(this).parent().siblings(".modal-body").children().children().hasClass("myLikes")
-              
+//     $(".removeAll").show();
+//      $(".removeAll").on("click",function(){
+//           console.log("clikkkkkk")
+//           const getAllIds = $(this).parent().siblings().find('li')
+//           console.log(getAllIds)
+      
           //api route to change all likes back to False . 
-          $.ajax({
-               url: "/api/removeAllLikes/",
-               type: "PUT",
-               success: function(updateLike){
-                    console.log('updated on remove all')
-                    $(".dinoFactHolder").empty(); //removes all from UI 
-               }
-          });
+          // $.ajax({
+          //      url: "/api/removeAllLikes",
+          //      type: "PUT",
+          //      success: function(updateLike){
+          //           console.log('updated on remove all')
+          //           $(".dinoFactHolder").empty(); //removes all from UI 
+          //      }
+          // });
 
           
-     })
-     //remove all facts from front end 
+   //  })
 });
