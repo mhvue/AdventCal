@@ -143,7 +143,6 @@ $("#viewLikes-btn").on("click", function(){
 
           //append data in the modal to dinoFactHolder as unordered list
            let ul =$("<ul>");
-
           for(let i = 0 ; i < data.length; i++){
                const id = data[i].id;
                const images = data[i].image.imagesInfo;
@@ -155,41 +154,43 @@ $("#viewLikes-btn").on("click", function(){
 
                //fact only 
                if(images === null && links === null){
-                    ul.append("<li class ='likedFact' id=" + id +"likedDay" + ">" + "Day " + id + " " + facts).addClass("myLikes");
+                    ul.append("<li class ='likedFact' id=" + id +"likedDay" + ">" + "Day " + id + " " + facts 
+                    + "<br>" + `<button class='deleteOne'>Delete fact ${id}</button>`).addClass("myLikes")
                }
 
                //images and fact
                else if(links === null){
-                    ul.append("<li class ='likedFact' id=" + id +"likedDay" + ">" + "Day " + id + " " + facts + imageHolder + "<br>").addClass("myLikes");
+                    ul.append("<li class ='likedFact' id=" + id +"likedDay" + ">" + "Day " + id + " " + facts + imageHolder 
+                    + "<br>" +  `<button class='deleteOne'>Delete fact ${id}</button>`).addClass("myLikes")
                }
                 
                // fact and link
                else if (images === null){
-                    ul.append("<li class ='likedFact' id=" + id +"likedDay" +  ">" + "Day "+ id + " " + facts + linkHolder + "<br>").addClass("myLikes");
+                    ul.append("<li class ='likedFact' id=" + id +"likedDay" +  ">" + "Day "+ id + " " + facts + linkHolder 
+                    + "<br>" + `<button class='deleteOne'>Delete fact ${id}</button>`).addClass("myLikes")
                 }
             }
-
-            $(".dinoFactHolder").html(ul)         
+           
+            $(".dinoFactHolder").html(ul)       
+            
+            $(".deleteOne").on("click",function(){
+               console.log("clikkkkkk")
+               const getAllIds = $(this).parent().attr("id")
+               console.log(getAllIds)
+           
+               //api route to change like back to false  
+               $.ajax({
+                    url: "/api/removeLikes/"+parseInt(getAllIds),
+                    type: "PUT",
+                    success: function(updateLike){
+                         $(`#${getAllIds}`).remove(); 
+                    },error: function(req, status, error){
+                         console.log(req, status, error)
+                    }
+                });
+     
+               
      });
-
-     //remove all likes -STILL IN THE PROCESS
-    // $(".msgModal").modal();
-//     $(".removeAll").show();
-//      $(".removeAll").on("click",function(){
-//           console.log("clikkkkkk")
-//           const getAllIds = $(this).parent().siblings().find('li')
-//           console.log(getAllIds)
-      
-          //api route to change all likes back to False . 
-          // $.ajax({
-          //      url: "/api/removeAllLikes",
-          //      type: "PUT",
-          //      success: function(updateLike){
-          //           console.log('updated on remove all')
-          //           $(".dinoFactHolder").empty(); //removes all from UI 
-          //      }
-          // });
-
-          
-   //  })
+         
+    });
 });

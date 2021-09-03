@@ -70,6 +70,14 @@ table{
     background-color: green;
 }
 
+.deleteOne {
+    margin-top: 5px;
+}
+
+li {
+    margin-bottom: 5%;
+}
+
 @media screen and (max-width: 600px) {
     h2{
         text-align: left;

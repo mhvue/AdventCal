@@ -63,7 +63,7 @@ module.exports = function(app){
         }).catch(function(error){
                 console.log(error)
         });
-    });
+});
 
 //get route here to display all likes, including the assoicated models. 
     app.get("/api/getLikes", function(req, res){
@@ -102,32 +102,25 @@ module.exports = function(app){
     });
 
 
-// //change all likes from T to F ...still thinking about this one
-    app.put("/api/removeAllLikes", function(req, res) {
+// remove from Likes - change likes back to false 
+    app.put("/api/removeLikes/:id", function(req, res) {
+        const dayNum = parseInt(req.params.id)
+        console.log(dayNum)
         //console.log(req)
-    //     db.facts.update({
-    //         likes: false
-    //     }, {
-    //         where: {
-    //             likes: true
-    //         }
-    //     }).then(function(db){
-    //         console.log(db)
-    //     }).catch(function(error){
-    //         console.log(error)
-    //     })
+        db.facts.update(
+            {
+                likes:false
+            },
+            {
+                where:{
+                    id:dayNum
+            }
+        }).then(function(dbLike){
+                res.json(dbLike)
+        }).catch(function(error){
+                console.log(error)
+        });
+})
 
-    // })
-    db.facts.findAll({
-        where: {
-            likes: true
-        },
-}).then(function(likes){
-    console.log(likes)
-        res.json(likes)
-    }).catch(function(error){
-        console.log(error)
-    });
- });
 
 }
