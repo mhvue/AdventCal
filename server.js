@@ -10,13 +10,12 @@ const port = process.env.PORT || 3000
 //middleware here
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.json());
 app.use(express.static("./public"));
 
 //routes here
-//api route here
+//api route 
 require("./routes/apiRoutes")(app)
-//html here
+//html route
 require("./routes/htmlRoutes")(app); 
 
 var syncOptions = { force: false};

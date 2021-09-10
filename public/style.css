@@ -30,7 +30,7 @@ table{
     background-color: gray;
 }
 
-h2,h1,h6, #viewLikes-btn{
+h2,h1,h6{
     text-align: center;
 }
 
@@ -41,8 +41,21 @@ h2,h1,h6, #viewLikes-btn{
 
 .linkText{
     color: white;
+    text-decoration: none;
 }
 
+a:hover{ 
+    color: #D8D7D5;
+    text-decoration: none;
+} 
+
+.contactInfo {
+    color: white;
+}
+
+.contactInfo:hover {
+    color: #D8D7D5;
+}
 footer{
     padding: 20px;
     background-color: gray;
@@ -57,13 +70,7 @@ table{
 }
 
 #contactMe{
-    background-color: black;
     padding: 10px;
-}
-
-
-.clickMe{
-    background-color: goldenrod;
 }
 
 .clicked{
@@ -75,7 +82,16 @@ table{
 }
 
 .likedFact {
-    margin-bottom: 5%;
+    margin-bottom: 15%;
+}
+
+.btn-outline-success{
+    float: right;
+    font-size: 13px;
+}
+
+.removeBorder{
+    border: 0px none;
 }
 
 @media screen and (max-width: 600px) {

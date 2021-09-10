@@ -91,7 +91,7 @@ $("td").on("click",function(){
    else{
         //below is for when user clicks on td that is not numbered 
         $(".msgModal").modal();
-        $(".modal-title").html(``);
+        $(".modal-title").html("Not a numbered day");
         $(".btn-primary").hide();
         $(".removeAll").hide();
         $(".dinoFactHolder").html("Please click on numbered day to display a fact.")
@@ -139,6 +139,7 @@ $("#viewLikes-btn").on("click", function(){
      $(".likeBtn").hide();
      $.get("/api/getLikes/", function(data){
           $(".msgModal").modal();
+          $(".modal-footer").addClass("removeBorder");
           $(".modal-title").html("Your Likes");
 
           //append data in the modal to dinoFactHolder as unordered list
@@ -154,20 +155,20 @@ $("#viewLikes-btn").on("click", function(){
 
                //fact only 
                if(images === null && links === null){
-                    ul.append("<li class ='likedFact' id=" + id +"likedDay" + ">" + "Day " + id + " " + facts 
-                    + "<br>" + `<button class='deleteOne'>Delete fact ${id}</button>`).addClass("myLikes")
+                    ul.append("<li class ='likedFact' id=" + id +"likedDay" + ">" + "Day " + id + ": " + facts 
+                    + "<br>" + `<button class='btn btn-outline-success deleteOne'>Delete</button>`).addClass("myLikes")
                }
 
                //images and fact
                else if(links === null){
-                    ul.append("<li class ='likedFact' id=" + id +"likedDay" + ">" + "Day " + id + " " + facts + imageHolder 
-                    + "<br>" +  `<button class='deleteOne'>Delete fact ${id}</button>`).addClass("myLikes")
+                    ul.append("<li class ='likedFact' id=" + id +"likedDay" + ">" + "Day " + id + ": " + facts + imageHolder 
+                    + "<br>" +  `<button class='btn btn-outline-success deleteOne'>Delete</button>`).addClass("myLikes")
                }
                 
                // fact and link
                else if (images === null){
-                    ul.append("<li class ='likedFact' id=" + id +"likedDay" +  ">" + "Day "+ id + " " + facts + linkHolder 
-                    + "<br>" + `<button class='deleteOne'>Delete fact ${id}</button>`).addClass("myLikes")
+                    ul.append("<li class ='likedFact' id=" + id +"likedDay" +  ">" + "Day "+ id + ": " + facts + linkHolder 
+                    + "<br>" + `<button class='btn btn-outline-success deleteOne'>Delete</button>`).addClass("myLikes")
                 }
             }
            
@@ -176,8 +177,7 @@ $("#viewLikes-btn").on("click", function(){
             $(".deleteOne").on("click",function(){
                console.log("clikkkkkk")
                const getAllIds = $(this).parent().attr("id")
-               console.log(getAllIds)
-           
+
                //api route to change like back to false  
                $.ajax({
                     url: "/api/removeLikes/"+parseInt(getAllIds),
