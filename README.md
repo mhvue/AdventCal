@@ -12,6 +12,16 @@ Eventually, I want to implement the same features such as not being able to clic
 * Knowledge how to deploy to heroku. If you need help, try this: https://www.youtube.com/watch?v=AQp7b-1356k 
 * Once deployed successfully to Heroku, you will neeed to seed your database. Watch this video on how to do that: https://www.youtube.com/watch?v=y7YwSIMLggo 
 
+## Build with: 
+* Bootstrap
+* HTML
+* CSS 
+* Javascript (jQuery)
+* Sequelize 
+* Node
+* Express 
+* MySql
+
 ## TO DO as of 9/10/2021
 * make it mobile friendly 
 
