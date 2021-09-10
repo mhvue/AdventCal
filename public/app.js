@@ -142,6 +142,11 @@ $("#viewLikes-btn").on("click", function(){
           $(".modal-footer").addClass("removeBorder");
           $(".modal-title").html("Your Likes");
 
+          if(data.length === 0){
+               console.log(data.length)
+               $(".dinoFactHolder").text("You have no likes yet.").addClass("noLikes")
+          }
+          else {
           //append data in the modal to dinoFactHolder as unordered list
            let ul =$("<ul>");
           for(let i = 0 ; i < data.length; i++){
@@ -191,6 +196,7 @@ $("#viewLikes-btn").on("click", function(){
      
                
      });
+     }
          
     });
 });

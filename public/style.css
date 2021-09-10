@@ -26,7 +26,7 @@ img{
     width: 400px;
 }
 
-table{
+table, .btn-secondary {
     background-color: gray;
 }
 
@@ -37,6 +37,10 @@ h2,h1,h6{
 .dinoFactHolder,h5{
     color: black;
   
+}
+
+.noLikes{
+    color: black;
 }
 
 .linkText{
@@ -90,9 +94,6 @@ table{
     font-size: 13px;
 }
 
-.removeBorder{
-    border: 0px none;
-}
 
 @media screen and (max-width: 600px) {
     h2{
