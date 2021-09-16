@@ -10,21 +10,22 @@ I also made version without a database back in Dec. 2020:  <a href="https://mhvu
 Eventually, I want to implement the same features such as not being able to click ahead. Play around with this one to see the slight differences. 
 
 ## How It Works: 
-* Click on any day to reveal a fun fact about dinosaurs. 
+Click on any day to reveal a fun fact about dinosaurs. 
 <p align="center"><img src="public/images/popUpDinoInfo.jpg"></p>
 
-* You'll see a "Like This" button. Click on it to add this fact a list of likes.  
-<p align="center"><img src="public/images/likeBtn.jpg"></p>
+You'll see a "Like This" button. Click on it to add this fact a list of likes.  
+<p align="center"><img src="public/images/likeBtn.png"></p>
 
-* You'll know it got added to Your Likes when the text on button changes to "Added to your likes!"
-<p align="center"><img src="public/imagse/savedToLikes.png"></p>
+You'll know it got added to Your Likes when the text on button changes to "Added to your likes!"
+<p align="center"><img src="public/images/savedToLikes.png"></p>
 
-* To view your likes, there is a View Likes button. 
+To view your likes, there is a View Likes button. 
 <p align="center"><img src="public/images/viewLikeBtn.jpg"></p>
+
 Click on that to reveal all your likes.
 <p align="center"><img src="public/images/viewLikesScreenshot.jpg"></p>
 
-* No longer like a fact from your list of likes? Just click on Delete to delet it from your list. 
+No longer like a fact from your list of likes? Just click on Delete to delet it from your list. 
 <p align-"center"><img src="public/images/DeleteLike.jpg"></p>
 
 
