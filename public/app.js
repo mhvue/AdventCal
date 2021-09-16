@@ -67,7 +67,7 @@ $("td").on("click",function(){
      if(likes === true){
           $(`#btn-${getID}`).addClass("likedInfo").text("Added to your likes!");
      }else{
-          $(`#btn-${getID}`).removeClass("likedInfo").text("Like this");
+          $(`#btn-${getID}`).removeClass("likedInfo").text("Like This");
      }
 
      //facts -there will always be a fact to display.. but sometimes we will not have a image and/or link. need ifs to check for not null on image or link
@@ -115,7 +115,7 @@ $(".likeBtn").on("click", function(){
                     type: "PUT",
                     success: function(updateLike){
                          //change text on btn back to Like this to let user know he/she can like info again 
-                         $("#"+btnId).removeClass("likedInfo").text("Like this");
+                         $("#"+btnId).removeClass("likedInfo").text("Like This");
                     }
                });
           }

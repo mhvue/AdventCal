@@ -10,7 +10,7 @@ I also made version without a database back in Dec. 2020:  <a href="https://mhvu
 Eventually, I want to implement the same features such as not being able to click ahead. Play around with this one to see the slight differences. 
 
 ## How It Works: 
-Click on any day to reveal a fun fact about dinosaurs. 
+Click on any day to reveal a fun fact about dinosaurs. Here I clicked on Day 8. 
 <p align="center"><img src="public/images/popUpDinoInfo.jpg"></p>
 
 You'll see a "Like This" button. Click on it to add this fact a list of likes.  
