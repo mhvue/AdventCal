@@ -25,8 +25,8 @@ To view your likes, there is a View Likes button.
 Click on that to reveal all your likes.
 <p align="center"><img src="public/images/viewLikesScreenshot.jpg"></p>
 
-No longer like a fact from your list of likes? Just click on Delete to delet it from your list. 
-<p align-"center"><img src="public/images/DeleteLike.jpg"></p>
+No longer like a fact from your list of likes? Just click on Delete to delete it from your list. 
+<p align="center"><img src="public/images/DeleteLike.jpg"></p>
 
 
 ## What you will need: 
