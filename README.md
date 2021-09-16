@@ -25,16 +25,15 @@ To view your likes, there is a View Likes button. Click on this button to see al
 Here is all your likes.
 <p align="center"><img src="public/images/viewLikesScreenshot.jpg"></p>
 
-No longer like a fact from your list of likes? Just click on Delete to delete it from your list. 
+If you no longer like a fact from your list of likes, just click on Delete to delete it from your list. 
 <p align="center"><img src="public/images/DeleteLike.jpg"></p>
 
 If you accidentally clicked on a non-numbered area on calendar, it will show you a message 
-
+<p align="center"><img src="public/images/notNumberDay.jpg"></p>
 
 ## What you will need: 
 * This is for those who are have some knowledge in programming. You will need to be able to add your own information in a database via the seeder files in this project. 
 * You will need MySql Workbench.
-* My imgDB only contain images from my local files. It is recommanded to upload images on another site and get the link from your image there instead.
 * Knowledge how to deploy to heroku. If you need help, try this: https://www.youtube.com/watch?v=AQp7b-1356k 
 * Once deployed successfully to Heroku, you will neeed to seed your database. Watch this video on how to do that: https://www.youtube.com/watch?v=y7YwSIMLggo 
 
