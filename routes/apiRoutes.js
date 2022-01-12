@@ -3,9 +3,9 @@ const db = require("../models");
 //require sequelize here 
 const sequelize = require("sequelize");
 
-module.exports = function(app){
+module.exports = (app) => {
 //get that fact for the day to show 
-    app.get("/api/fact/:id", function(req,res){
+    app.get("/api/fact/:id", (req,res) => {
         //our id is going be our day number from front end 
         const dayNum = parseInt(req.params.id);
         //we are going to find the day by primary key in our table as our pk is same as our day number 
@@ -19,16 +19,16 @@ module.exports = function(app){
                     model: db.images
                 },
             ]
-        }).then(function(fact){
+        }).then((fact) => {
             res.json(fact);
-        }).catch(function(error){
+        }).catch((error) => {
             console.log(error)
         });
     });
 
 
 //add Likes to True 
-    app.put("/api/likedFact/:id", function(req,res){
+    app.put("/api/likedFact/:id", (req,res) => {
         const dayNum = parseInt(req.params.id);
          console.log("here" + dayNum)   
         db.facts.update(
@@ -39,15 +39,16 @@ module.exports = function(app){
                 where:{
                     id:dayNum
             }
-        }).then(function(dbLike){
+        }).then((dbLike) => {
                 res.json(dbLike)
-        }).catch(function(error){
+        }).catch((error) => 
+        {
                 console.log(error)
         });
     });
 
 // update Likes back to False
-    app.put("/api/unlikedFact/:id", function(req,res){
+    app.put("/api/unlikedFact/:id", (req,res) => {
         const dayNum = parseInt(req.params.id);
         console.log("hereAgain" + dayNum)   
         db.facts.update(
@@ -58,15 +59,15 @@ module.exports = function(app){
                 where:{
                     id:dayNum
             }
-        }).then(function(dbLike){
+        }).then((dbLike) => {
                 res.json(dbLike)
-        }).catch(function(error){
+        }).catch((error) => {
                 console.log(error)
         });
 });
 
 //get route here to display all likes, including the assoicated models. 
-    app.get("/api/getLikes", function(req, res){
+    app.get("/api/getLikes", (req, res) => {
         db.facts.findAll({
             where: {
                 likes: true
@@ -79,31 +80,31 @@ module.exports = function(app){
                 model: db.images
             }
         ]
-    }).then(function(likes){
+    }).then((likes) => {
             res.json(likes)
-        }).catch(function(error){
+        }).catch((error) => {
             console.log(error)
         });
     });
 
 
 //get like info from a specific fact
-    app.get("/api/getFactLike/:id",function(req,res){
+    app.get("/api/getFactLike/:id",(req,res) => {
         const dayNum = parseInt(req.params.id);
 
         db.facts.findByPk(dayNum,
             {
              attributes: ["likes"]
-        }).then(function(likeDb){
+        }).then((likeDb) => {
             res.json(likeDb)
-        }).catch(function(error){
+        }).catch((error) => {
           console.log(error)
         })
     });
 
 
 // remove from Likes - change likes back to false 
-    app.put("/api/removeLikes/:id", function(req, res) {
+    app.put("/api/removeLikes/:id", (req, res) => {
         const dayNum = parseInt(req.params.id)
         console.log(dayNum)
         //console.log(req)
@@ -115,9 +116,9 @@ module.exports = function(app){
                 where:{
                     id:dayNum
             }
-        }).then(function(dbLike){
+        }).then((dbLike) => {
                 res.json(dbLike)
-        }).catch(function(error){
+        }).catch((error) => {
                 console.log(error)
         });
 })

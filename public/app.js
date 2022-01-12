@@ -7,7 +7,7 @@ const year = date.getFullYear();
 
 //CALENDAR
 $("h2").html("December " + year);
-$(".removeAll").hide();
+
 //generate dates for the calendar
 for(let i = -2; i <= 32; i++){
     let getDays = i;
@@ -60,8 +60,7 @@ $("td").on("click",function(){
      $(".modal-title").html(`Fact for Day ${getID}`);
      $(".likeBtn").show();
      $(".btn-primary").attr("id",`btn-${getID}`);
-     $(".removeAll").hide();
-          
+
      
      //this is for Likes status, if likes is True, then show msg on btn to user that fact is liked
      if(likes === true){
@@ -93,7 +92,6 @@ $("td").on("click",function(){
         $(".msgModal").modal();
         $(".modal-title").html("Not a numbered day");
         $(".btn-primary").hide();
-        $(".removeAll").hide();
         $(".dinoFactHolder").html("Please click on numbered day to display a fact.")
    }
     
