@@ -22,13 +22,16 @@ td{
     height: 100px;
 }
 
-img{
-    width: 400px;
+img, .modal{
+    width: 100%;
+
 }
 
 table, .btn-secondary {
     background-color: gray;
 }
+
+
 
 h2,h1,h6{
     text-align: center;
@@ -104,7 +107,7 @@ table{
 }
 
 @media screen and (max-width: 600px) {
-    h2{
-        text-align: left;
-    }
+   th {
+       width: 5%;
+   }
 }
