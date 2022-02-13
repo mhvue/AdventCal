@@ -47,6 +47,6 @@ If you accidentally clicked on a non-numbered area on calendar, it will show you
 * Express 
 * MySQL
 
-## TO DO as of 9/10/2021
-* make it mobile friendly 
+## TO DO as of 2/12/2022
+* need to make sure works for most mobile 
 
