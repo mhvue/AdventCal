@@ -7,6 +7,10 @@ body{
     color: white;
 }
 
+.smallScreenTh {
+    display: none;
+}
+
 th{
     border: 1px solid white;
     color: white;
@@ -106,8 +110,16 @@ table{
     padding-bottom: 2em;
 }
 
-@media screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) {
    th {
-       width: 5%;
+       display: none;
+   }
+
+   .smallScreenTh {
+       display: table-cell;
+   }
+
+   .modal {
+       width: 80%;
    }
 }
