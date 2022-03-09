@@ -7,6 +7,10 @@ body{
     color: white;
 }
 
+/**all things table related**/
+table{
+    margin-top: 20px;
+}
 .smallScreenTh {
     display: none;
 }
@@ -15,8 +19,8 @@ th{
     width: 14%;
     border: 1px solid white;
     color: white;
-   
 }
+
 td{
     border: 1px solid white;
     color: black;
@@ -27,28 +31,46 @@ td{
     padding: 10px;
 }
 
-img,.modal{
-    width: 100%;
-
-}
-
 table, .btn-secondary {
     background-color: gray;
 }
 
+/**text**/
 h2,h1,h6{
     text-align: center;
 }
-
-.dinoFactHolder,h5, .noLikes{
-    color: black;
-  
+.infoText {
+    max-width: 100%;
+    padding-bottom: 2em;
 }
 
+/**modal related**/
+.dinoFactHolder,h5,.noLikes{
+    color: black;
+}
+
+img,.modal{
+    width: 100%;
+}
+
+.likedFact {
+    margin-bottom: 15%;
+}
+
+/**buttons**/
 #viewLikes-btn {
     background-color: green;
 }
+.deleteBtn {
+    margin-top: 5px;
+}
 
+.btn-outline-success{
+    float: right;
+    font-size: 13px;
+}
+
+/**resources used**/
 .linkText{
     color: white;
     text-decoration: none;
@@ -59,6 +81,13 @@ a:hover{
     text-decoration: none;
 } 
 
+/**footer**/
+footer{
+    padding: 20px;
+    background-color: gray;
+    text-align: center;
+}
+
 .contactInfo {
     color: white;
 }
@@ -66,43 +95,14 @@ a:hover{
 .contactInfo:hover {
     color: #D8D7D5;
 }
-footer{
-    padding: 20px;
-    background-color: gray;
-    text-align: center;
-}
-li{
-    list-style-position:inside;
-}
-
-table{
-    margin-top: 20px;
-}
 
 #contactMe{
     padding: 10px;
 }
 
+/**only for functionally of advent day by day action**/
 .clicked{
     background-color: green;
-}
-
-.deleteOne {
-    margin-top: 5px;
-}
-
-.likedFact {
-    margin-bottom: 15%;
-}
-
-.btn-outline-success{
-    float: right;
-    font-size: 13px;
-}
-
-.infoText {
-    max-width: 100%;
-    padding-bottom: 2em;
 }
 
 

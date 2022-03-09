@@ -150,25 +150,24 @@ $("#viewLikes-btn").on("click", function(){
                //fact only 
                if(images === null && links === null){
                     ul.append("<li class ='likedFact' id=" + id +"likedDay" + ">" + "Day " + id + ": " + facts 
-                    + "<br>" + `<button class='btn btn-outline-success deleteOne'>Delete</button>`).addClass("myLikes")
+                    + "<br>" + `<button class='btn btn-outline-success deleteBtn'>Delete</button>`).addClass("myLikes")
                }
-
                //images and fact
                else if(links === null){
                     ul.append("<li class ='likedFact' id=" + id +"likedDay" + ">" + "Day " + id + ": " + facts + imageHolder 
-                    + "<br>" +  `<button class='btn btn-outline-success deleteOne'>Delete</button>`).addClass("myLikes")
+                    + "<br>" +  `<button class='btn btn-outline-success deleteBtn'>Delete</button>`).addClass("myLikes")
                }
                 
                // fact and link
                else if (images === null){
                     ul.append("<li class ='likedFact' id=" + id +"likedDay" +  ">" + "Day "+ id + ": " + facts + linkHolder 
-                    + "<br>" + `<button class='btn btn-outline-success deleteOne'>Delete</button>`).addClass("myLikes")
+                    + "<br>" + `<button class='btn btn-outline-success deleteBtn'>Delete</button>`).addClass("myLikes")
                 }
             }
            
             $(".dinoFactHolder").html(ul)       
             
-            $(".deleteOne").on("click",function(){
+            $(".deleteBtn").on("click",function(){
                const getAllIds = $(this).parent().attr("id")
 
                //api route to change like back to false  
