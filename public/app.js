@@ -9,7 +9,7 @@ const year = date.getFullYear();
 $("h2").html("December " + year);
 
 //generate dates for the calendar
-for(let i = -2; i <= 32; i++){
+for(let i = -3; i <= 31; i++){
     let getDays = i;
     let tdData = $("<td>").html(getDays).attr("data-date",`12/${i}/${year}`).attr("id",i) //updated this to i instead of td+i as the id for testing purposes 
 
@@ -17,31 +17,25 @@ for(let i = -2; i <= 32; i++){
      if(i <= 0){
      $("#numberDays").append("<td>"+ "" + "</td>");
     }
-    else if(i >=1 && i <= 4){
+    else if(i >=1 && i <= 3){
      $("#numberDays").append(tdData);
     }
      //2nd week
-    else if(i >= 5 && i <= 11){
+    else if(i >= 4 && i <= 10){
      $("#numberDays2").append(tdData);
     }
      //3rd week
-    else if(i >= 12 && i <= 18){
+    else if(i >= 11 && i <= 17){
      $("#numberDays3").append(tdData);
     }
      //4th week
-    else if(i >= 19 && i <= 25){
+    else if(i >= 18 && i <= 24){
      $("#numberDays4").append(tdData);
      }
       //5th week
     else{
-          if(i >= 32){ //appending nothing into td as there's no such numbered days
-            $("#numberDays5").append("<td>"+ "" + "</td>");
-         }
-         else{
             $("#numberDays5").append(tdData);
         }
-     }
-
 }
 
 //display facts for any day that is clicked on 
@@ -141,7 +135,6 @@ $("#viewLikes-btn").on("click", function(){
           $(".modal-title").html("Your Likes");
 
           if(data.length === 0){
-               console.log(data.length)
                $(".dinoFactHolder").text("You have no likes yet.").addClass("noLikes")
           }
           else {
@@ -178,7 +171,6 @@ $("#viewLikes-btn").on("click", function(){
             $(".dinoFactHolder").html(ul)       
             
             $(".deleteOne").on("click",function(){
-               console.log("clikkkkkk")
                const getAllIds = $(this).parent().attr("id")
 
                //api route to change like back to false  
