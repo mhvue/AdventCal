@@ -1,6 +1,6 @@
 # AdventCalendar 
 
-An e-advent calender for Dec. 2021. The one I made is Dinosaur theme containing facts, images and links for dinosaur related things.  
+An e-advent calender for Dec. 2022. The one I made is Dinosaur theme containing facts, images and links for dinosaur related things.  
 
 <img src="public/images/2021DecCalendar.jpg"><a href="https://dry-lake-20084.herokuapp.com" target="_blank"></a>
 
@@ -50,3 +50,5 @@ If you accidentally clicked on a non-numbered area on calendar, it will show you
 ## TO DO as of 2/12/2022
 * need to make sure works for most mobile 
 
+## Resources
+<p>While there is no one way to write css, I'm learning to make it more organized. I read this <a href="https://medium.com/swlh/better-ways-to-organise-css-properties-9a066e7ded62">article</a> for reference. 

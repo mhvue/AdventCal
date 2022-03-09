@@ -12,9 +12,10 @@ body{
 }
 
 th{
+    width: 14%;
     border: 1px solid white;
     color: white;
-    width: 14%;
+   
 }
 td{
     border: 1px solid white;
@@ -22,11 +23,11 @@ td{
 }
 
 .rowDays{
-    padding: 10px;
     height: 100px;
+    padding: 10px;
 }
 
-img, .modal{
+img,.modal{
     width: 100%;
 
 }
@@ -35,19 +36,13 @@ table, .btn-secondary {
     background-color: gray;
 }
 
-
-
 h2,h1,h6{
     text-align: center;
 }
 
-.dinoFactHolder,h5{
+.dinoFactHolder,h5, .noLikes{
     color: black;
   
-}
-
-.noLikes{
-    color: black;
 }
 
 #viewLikes-btn {
