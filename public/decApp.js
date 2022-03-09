@@ -1,4 +1,6 @@
-//COPY OF APP.JS for use when it is December. so app.js is cleaner without all the commented out functionality 
+//NEED TO UPDATE TO MATCH DECEMBER 2022
+//COPY OF APP.JS for use when it is December. to have the advent day by day functionally
+// so app.js is cleaner without all the commented out functionality 
 
 //get the date 
 const date = new Date();

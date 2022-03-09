@@ -1,5 +1,3 @@
-//this is app.js is for testing purposes.
-
 //get the date 
 const date = new Date();
 //get the year
@@ -13,7 +11,7 @@ for(let i = -3; i <= 31; i++){
     let getDays = i;
     let tdData = $("<td>").html(getDays).attr("data-date",`12/${i}/${year}`).attr("id",i) //updated this to i instead of td+i as the id for testing purposes 
 
-     //1st week - appending nothing into td as there's no such numbered days. doing it this way to get 1 listed in calendar as per Dec. 2021 
+     //1st week - appending nothing into td as there's no such numbered days. doing it this way to get 1 listed in calendar as per Dec. 2022
      if(i <= 0){
      $("#numberDays").append("<td>"+ "" + "</td>");
     }
