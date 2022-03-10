@@ -105,7 +105,7 @@ footer{
     background-color: green;
 }
 
-
+/**media queries**/
 @media (max-width: 600px) {
    th {
        display: none;
