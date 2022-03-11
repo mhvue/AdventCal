@@ -4,7 +4,7 @@ An e-advent calender for Dec. 2022. The one I made is Dinosaur theme containing 
 
 <img src="public/images/2022DecCalendar.jpg" alt="2022 December calendar"><a href="https://dry-lake-20084.herokuapp.com" target="_blank"></a>
 
-Check it out: <a href="https://dry-lake-20084.herokuapp.com" target="_blank">Dinosaur Dec. 2021 Advent Calendar</a>
+Check it out: <a href="https://dry-lake-20084.herokuapp.com" target="_blank">Dinosaur Dec. 2022 Advent Calendar</a>
 
 I also made version without a database back in Dec. 2020:  <a href="https://mhvue.github.io/dinosaurAdventCalendar" target="_blank">Dinosaur Dec. 2020 Advent Calendar</a>.  Check out that repository here: <a href="https://github.com/mhvue/dinosaurAdventCalendar" target="_blank">here</a>. 
 Eventually, I want to implement the same features such as not being able to click ahead. Play around with this one to see the slight differences. 
